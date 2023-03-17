@@ -1,0 +1,27 @@
+server:
+  port: 0
+  servlet:
+    context-path: /report
+
+spring:
+  application:
+    name: report
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://admin:123@localhost:8083/eureka
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: BASIC
+    list:
+      user: localhost:8080/user
+    

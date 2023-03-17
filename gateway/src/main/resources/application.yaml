@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://admin:123@localhost:8083/eureka
+  instance:    instance-id: ${spring.application.name}
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+      - id: user
+        uri: lb://user
+        predicates:
+        - Path=/user/**
+      - id: report
+        uri: lb://report
+        predicates:
+        - Path=/report/**

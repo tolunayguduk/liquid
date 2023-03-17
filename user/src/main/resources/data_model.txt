@@ -1,0 +1,125 @@
+-- myth.`user` definition
+
+CREATE TABLE `user` (
+  `ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(100) DEFAULT NULL,
+  `SURNAME` varchar(100) DEFAULT NULL,
+  `USERNAME` varchar(100) DEFAULT NULL,
+  `GENDER` varchar(50) DEFAULT NULL,
+  `PROFILE_PHOTO_LINK` varchar(200) DEFAULT NULL,
+  `BIRTH_DATE` date DEFAULT NULL,
+  `STATUS` int(11) DEFAULT NULL,
+  `CREATE_DATE` date DEFAULT NULL,
+  `CREATED_BY` varchar(100) DEFAULT NULL,
+  `UPDATE_DATE` date DEFAULT NULL,
+  `UPDATED_BY` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `user_un` (`USERNAME`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin5;
+
+-- myth.user_address definition
+
+CREATE TABLE `user_address` (
+  `ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `USER_ID` bigint(20) unsigned NOT NULL,
+  `COUNTRY` varchar(100) DEFAULT NULL,
+  `CITY` varchar(100) DEFAULT NULL,
+  `ZIP_CODE` int(11) DEFAULT NULL,
+  `ADDRESS` varchar(500) DEFAULT NULL,
+  `STATUS` int(11) DEFAULT NULL,
+  `CREATE_DATE` date DEFAULT NULL,
+  `CREATED_BY` varchar(100) DEFAULT NULL,
+  `UPDATE_DATE` date DEFAULT NULL,
+  `UPDATED_BY` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin5 COMMENT='Kullanıcılara ait adres bilgisini tutar';
+
+-- myth.user_email definition
+
+CREATE TABLE `user_email` (
+  `ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `USER_ID` bigint(20) unsigned NOT NULL,
+  `EMAIL` varchar(100) DEFAULT NULL,
+  `STATUS` int(11) DEFAULT NULL,
+  `CREATE_DATE` date DEFAULT NULL,
+  `CREATED_BY` varchar(100) DEFAULT NULL,
+  `UPDATE_DATE` date DEFAULT NULL,
+  `UPDATED_BY` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `USER_EMAIL_un` (`EMAIL`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin5 COMMENT='Kullanıcılara ait email bilgilerini tutar';
+
+-- myth.user_password definition
+
+CREATE TABLE `user_password` (
+  `ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `USER_ID` bigint(20) unsigned NOT NULL,
+  `PASSWORD` varchar(200) DEFAULT NULL,
+  `STATUS` int(11) DEFAULT NULL,
+  `CREATE_DATE` date DEFAULT NULL,
+  `CREATED_BY` varchar(100) DEFAULT NULL,
+  `UPDATE_DATE` date DEFAULT NULL,
+  `UPDATED_BY` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin5 COMMENT='Kullanıcılara ait parola bilgisini tutar';
+
+-- myth.`role` definition
+
+CREATE TABLE `role` (
+  `ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(100) DEFAULT NULL,
+  `DESCRIPTION` varchar(200) DEFAULT NULL,
+  `STATUS` int(11) DEFAULT NULL,
+  `CREATE_DATE` date DEFAULT NULL,
+  `CREATED_BY` varchar(100) DEFAULT NULL,
+  `UPDATE_DATE` date DEFAULT NULL,
+  `UPDATED_BY` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin5 COMMENT='Rol Tanımlarını tutar';
+
+-- myth.user_role definition
+
+CREATE TABLE `user_role` (
+  `ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `ROLE_ID` bigint(20) unsigned DEFAULT NULL,
+  `USER_ID` bigint(20) unsigned DEFAULT NULL,
+  `IS_TEMPORARY` binary(1) DEFAULT NULL,
+  `EXPIRY_DATE` date DEFAULT NULL,
+  `STATUS` int(11) DEFAULT NULL,
+  `CREATE_DATE` date DEFAULT NULL,
+  `CREATED_BY` varchar(100) DEFAULT NULL,
+  `UPDATE_DATE` date DEFAULT NULL,
+  `UPDATED_BY` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin5 COMMENT='Kullanıcı ve rol eşleşmelerini tutar';
+
+-- myth.api_key definition
+
+CREATE TABLE `api_key` (
+  `ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `API_KEY` VARCHAR(45) NULL,
+  `ROUTE` VARCHAR(45) NULL,
+  `STATUS` INT DEFAULT NULL,
+  `CREATE_DATE` DATE DEFAULT NULL,
+  `CREATED_BY` VARCHAR(100) DEFAULT NULL,
+  `UPDATE_DATE` DATE DEFAULT NULL,
+  `UPDATED_BY` VARCHAR(100) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+  ) ENGINE=InnoDB DEFAULT CHARSET=latin5 COMMENT='api-key eşleşmesini tutar';
+  
+  -- myth.user_token definition
+  
+  CREATE TABLE `user_token` (
+  `ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `USER_ID` bigint(20) unsigned NOT NULL,
+  `ACCESS_TOKEN` varchar(100) DEFAULT NULL,
+  `REFRESH_TOKEN` varchar(100) DEFAULT NULL,
+  `EXPIRY_DATE` date DEFAULT NULL,
+  `STATUS` int(11) DEFAULT NULL,
+  `CREATE_DATE` date DEFAULT NULL,
+  `CREATED_BY` varchar(100) DEFAULT NULL,
+  `UPDATE_DATE` date DEFAULT NULL,
+  `UPDATED_BY` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin5 COMMENT='user-token eşleşmesini tutar';
+  
