@@ -1,6 +1,9 @@
 package com.liquid.user.dto;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,11 +18,14 @@ public class UserDto {
 	private String surname;
 	private String username;
 	private String gender;
-	private Date birthDate;
+	@JsonFormat(pattern = "dd-MM-yyyy")
+	private LocalDate birthDate;
 	private int status;
-	private Date createDate;
+	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+	private LocalDateTime createDate;
 	private String createdBy;
-	private Date updateDate;
+	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+	private LocalDateTime updateDate;
 	private String updatedBy;
 
 }

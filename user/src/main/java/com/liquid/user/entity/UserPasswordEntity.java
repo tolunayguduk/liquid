@@ -1,6 +1,6 @@
 package com.liquid.user.entity;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -41,13 +41,13 @@ public class UserPasswordEntity {
 	private int status;
 
 	@Column(name = "CREATE_DATE")
-	private Date createDate;
+	private LocalDateTime createDate;
 
 	@Column(name = "CREATED_BY")
 	private String createdBy;
 
 	@Column(name = "UPDATE_DATE")
-	private Date updateDate;
+	private LocalDateTime updateDate;
 
 	@Column(name = "UPDATED_BY")
 	private String updatedBy;

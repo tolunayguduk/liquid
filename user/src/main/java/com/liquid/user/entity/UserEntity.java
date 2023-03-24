@@ -1,7 +1,8 @@
 package com.liquid.user.entity;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -47,19 +48,19 @@ public class UserEntity {
 	private String profilePhotoLink;
 
 	@Column(name = "BIRTH_DATE")
-	private Date birthDate;
+	private LocalDate birthDate;
 
 	@Column(name = "STATUS")
 	private int status;
 
 	@Column(name = "CREATE_DATE")
-	private Date createDate;
+	private LocalDateTime createDate;
 
 	@Column(name = "CREATED_BY")
 	private String createdBy;
 
 	@Column(name = "UPDATE_DATE")
-	private Date updateDate;
+	private LocalDateTime updateDate;
 
 	@Column(name = "UPDATED_BY")
 	private String updatedBy;
