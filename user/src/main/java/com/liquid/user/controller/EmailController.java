@@ -18,7 +18,6 @@ import com.liquid.user.dto.EmailDto;
 import com.liquid.user.entity.UserEmailEntity;
 import com.liquid.user.mapper.EmailMapper;
 import com.liquid.user.service.UserEmailService;
-import com.liquid.util.model.BaseResponse;
 
 @RestController
 @RequestMapping("/email")
@@ -33,31 +32,31 @@ public class EmailController {
 	@GetMapping("/list")
 	public ResponseEntity<?> list() {
 		List<UserEmailEntity> entityList = service.list();
-		return new ResponseEntity<>(new BaseResponse<>(emailMapper.toDto(entityList)), HttpStatus.OK);
+		return new ResponseEntity<>(emailMapper.toDto(entityList), HttpStatus.OK);
 	}
 
 	@GetMapping("/find/{id}")
 	public ResponseEntity<?> find(@PathVariable("id") Long id) {
 		UserEmailEntity entity = service.find(id);
-		return new ResponseEntity<>(new BaseResponse<>(emailMapper.toDto(entity)), HttpStatus.OK);
+		return new ResponseEntity<>(emailMapper.toDto(entity), HttpStatus.OK);
 	}
 
 	@PostMapping("/create/{userId}")
 	public ResponseEntity<?> addEmail(@PathVariable("userId") Long userId, @RequestBody EmailDto email) {
 		UserEmailEntity entity = service.create(userId, emailMapper.toEntity(email));
-		return new ResponseEntity<>(new BaseResponse<>(emailMapper.toDto(entity)), HttpStatus.OK);
+		return new ResponseEntity<>(emailMapper.toDto(entity), HttpStatus.OK);
 	}
 
 	@PutMapping("/update/{id}")
 	public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody EmailDto email) {
 		UserEmailEntity entity = service.update(id, emailMapper.toEntity(email));
-		return new ResponseEntity<>(new BaseResponse<>(emailMapper.toDto(entity)), HttpStatus.OK);
+		return new ResponseEntity<>(emailMapper.toDto(entity), HttpStatus.OK);
 	}
 
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id") Long id) {
 		UserEmailEntity entity = service.delete(id);
-		return new ResponseEntity<>(new BaseResponse<>(emailMapper.toDto(entity)), HttpStatus.OK);
+		return new ResponseEntity<>(emailMapper.toDto(entity), HttpStatus.OK);
 	}
 
 }

@@ -18,7 +18,6 @@ import com.liquid.user.dto.UserDto;
 import com.liquid.user.entity.UserEntity;
 import com.liquid.user.mapper.UserMapper;
 import com.liquid.user.service.UserService;
-import com.liquid.util.model.BaseResponse;
 
 @RestController
 @RequestMapping("/")
@@ -33,37 +32,37 @@ public class UserController {
 	@GetMapping("/list")
 	public ResponseEntity<?> list() {
 		List<UserEntity> entityList = service.list();
-		return new ResponseEntity<>(new BaseResponse<>(userMapper.toDto(entityList)), HttpStatus.OK);
+		return new ResponseEntity<>(userMapper.toDto(entityList), HttpStatus.OK);
 	}
 
 	@GetMapping("/find/id/{id}")
 	public ResponseEntity<?> find(@PathVariable("id") Long id) {
 		UserEntity entity = service.find(id);
-		return new ResponseEntity<>(new BaseResponse<>(userMapper.toDto(entity)), HttpStatus.OK);
+		return new ResponseEntity<>(userMapper.toDto(entity), HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/find/username/{username}")
 	public ResponseEntity<?> find(@PathVariable("username") String username) {
 		UserEntity entity = service.find(username);
-		return new ResponseEntity<>(new BaseResponse<>(userMapper.toDto(entity)), HttpStatus.OK);
+		return new ResponseEntity<>(userMapper.toDto(entity), HttpStatus.OK);
 	}
 
 	@PostMapping("/create")
 	public ResponseEntity<?> create(@RequestBody UserDto user) {
 		UserEntity entity = service.create(userMapper.toEntity(user));
-		return new ResponseEntity<>(new BaseResponse<>(userMapper.toDto(entity)), HttpStatus.OK);
+		return new ResponseEntity<>(userMapper.toDto(entity), HttpStatus.OK);
 	}
 
 	@PutMapping("/update/{id}")
 	public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody UserDto user) {
 		UserEntity entity = service.update(id, userMapper.toEntity(user));
-		return new ResponseEntity<>(new BaseResponse<>(userMapper.toDto(entity)), HttpStatus.OK);
+		return new ResponseEntity<>(userMapper.toDto(entity), HttpStatus.OK);
 	}
 
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id") Long id) {
 		UserEntity entity = service.delete(id);
-		return new ResponseEntity<>(new BaseResponse<>(userMapper.toDto(entity)), HttpStatus.OK);
+		return new ResponseEntity<>(userMapper.toDto(entity), HttpStatus.OK);
 	}
 
 }

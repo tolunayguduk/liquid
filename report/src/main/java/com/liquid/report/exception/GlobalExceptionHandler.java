@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.liquid.util.exception.CustomException;
 import com.liquid.util.exception.Exception;
-import com.liquid.util.model.BaseResponse;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -20,13 +19,13 @@ public class GlobalExceptionHandler {
 	public ResponseEntity<?> exception(CustomException exception) {
 		Exception ex = Exception.getException(Long.valueOf(exception.getMessage()));
 		logger.info("(" + ex.getCode() + ") " + ex.getExplanation());
-		return new ResponseEntity<>(new BaseResponse<Object>(ex.getCode(), ex.getExplanation()), HttpStatus.OK);
+		return new ResponseEntity<>(ex.getExplanation(), ex.getStatus());
 	}
 
-	@ExceptionHandler(value = java.lang.Exception.class)
+	@ExceptionHandler()
 	public ResponseEntity<?> exception(java.lang.Exception exception) {
 		logger.info(exception.getLocalizedMessage());
-		return new ResponseEntity<>(new BaseResponse<Object>(0L, exception.getLocalizedMessage()), HttpStatus.OK);
+		return new ResponseEntity<>(exception.getLocalizedMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
 }

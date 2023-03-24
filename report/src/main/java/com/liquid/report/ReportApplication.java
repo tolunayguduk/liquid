@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
-@EnableFeignClients("com.liquid.report")  
+@EnableFeignClients("com.liquid.report")
 public class ReportApplication {
 
 	public static void main(String[] args) {

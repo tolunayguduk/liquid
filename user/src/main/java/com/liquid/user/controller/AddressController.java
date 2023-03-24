@@ -18,7 +18,6 @@ import com.liquid.user.dto.AddressDto;
 import com.liquid.user.entity.UserAddressEntity;
 import com.liquid.user.mapper.AddressMapper;
 import com.liquid.user.service.UserAddressService;
-import com.liquid.util.model.BaseResponse;
 
 @RestController
 @RequestMapping("/address")
@@ -33,31 +32,31 @@ public class AddressController {
 	@GetMapping("/list")
 	public ResponseEntity<?> list() {
 		List<UserAddressEntity> entityList = service.list();
-		return new ResponseEntity<>(new BaseResponse<>(addressMapper.toDto(entityList)), HttpStatus.OK);
+		return new ResponseEntity<>(addressMapper.toDto(entityList), HttpStatus.OK);
 	}
 
 	@GetMapping("/find/{id}")
 	public ResponseEntity<?> find(@PathVariable("id") Long id) {
 		UserAddressEntity entity = service.find(id);
-		return new ResponseEntity<>(new BaseResponse<>(addressMapper.toDto(entity)), HttpStatus.OK);
+		return new ResponseEntity<>(addressMapper.toDto(entity), HttpStatus.OK);
 	}
 
 	@PostMapping("/create/{id}")
 	public ResponseEntity<?> create(@PathVariable("id") Long userId, @RequestBody AddressDto address) {
 		UserAddressEntity entity = service.create(userId, addressMapper.toEntity(address));
-		return new ResponseEntity<>(new BaseResponse<>(addressMapper.toDto(entity)), HttpStatus.OK);
+		return new ResponseEntity<>(addressMapper.toDto(entity), HttpStatus.OK);
 	}
 
 	@PutMapping("/update/{id}")
 	public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody AddressDto address) {
 		UserAddressEntity entity = service.update(id, addressMapper.toEntity(address));
-		return new ResponseEntity<>(new BaseResponse<>(addressMapper.toDto(entity)), HttpStatus.OK);
+		return new ResponseEntity<>(addressMapper.toDto(entity), HttpStatus.OK);
 	}
 
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id") Long id) {
 		UserAddressEntity entity = service.delete(id);
-		return new ResponseEntity<>(new BaseResponse<>(addressMapper.toDto(entity)), HttpStatus.OK);
+		return new ResponseEntity<>(addressMapper.toDto(entity), HttpStatus.OK);
 	}
 
 }

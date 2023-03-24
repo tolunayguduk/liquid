@@ -18,7 +18,6 @@ import com.liquid.user.dto.PasswordDto;
 import com.liquid.user.entity.UserPasswordEntity;
 import com.liquid.user.mapper.PasswordMapper;
 import com.liquid.user.service.UserPasswordService;
-import com.liquid.util.model.BaseResponse;
 
 @RestController
 @RequestMapping("/password")
@@ -33,31 +32,31 @@ public class PasswordController {
 	@GetMapping("/list")
 	public ResponseEntity<?> list() {
 		List<UserPasswordEntity> entityList = service.list();
-		return new ResponseEntity<>(new BaseResponse<>(passwordMapper.toDto(entityList)), HttpStatus.OK);
+		return new ResponseEntity<>(passwordMapper.toDto(entityList), HttpStatus.OK);
 	}
 
 	@GetMapping("/find/{id}")
 	public ResponseEntity<?> find(@PathVariable("id") Long id) {
 		UserPasswordEntity entity = service.find(id);
-		return new ResponseEntity<>(new BaseResponse<>(passwordMapper.toDto(entity)), HttpStatus.OK);
+		return new ResponseEntity<>(passwordMapper.toDto(entity), HttpStatus.OK);
 	}
 
 	@PostMapping("/create/{userId}")
 	public ResponseEntity<?> addEmail(@PathVariable("userId") Long userId, @RequestBody PasswordDto password) {
 		UserPasswordEntity entity = service.create(userId, passwordMapper.toEntity(password));
-		return new ResponseEntity<>(new BaseResponse<>(passwordMapper.toDto(entity)), HttpStatus.OK);
+		return new ResponseEntity<>(passwordMapper.toDto(entity), HttpStatus.OK);
 	}
 
 	@PutMapping("/update/{id}")
 	public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody PasswordDto password) {
 		UserPasswordEntity entity = service.update(id, passwordMapper.toEntity(password));
-		return new ResponseEntity<>(new BaseResponse<>(passwordMapper.toDto(entity)), HttpStatus.OK);
+		return new ResponseEntity<>(passwordMapper.toDto(entity), HttpStatus.OK);
 	}
 
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id") Long id) {
 		UserPasswordEntity entity = service.delete(id);
-		return new ResponseEntity<>(new BaseResponse<>(passwordMapper.toDto(entity)), HttpStatus.OK);
+		return new ResponseEntity<>(passwordMapper.toDto(entity), HttpStatus.OK);
 	}
 
 }
