@@ -14,7 +14,7 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public UserDto find(Long id) {
-		UserDto user = userClient.find(id).getResult();
+		UserDto user = userClient.find(id);
 		return user;
 	}
 
