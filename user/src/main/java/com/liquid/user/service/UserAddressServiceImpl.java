@@ -1,15 +1,13 @@
 package com.liquid.user.service;
 
-import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.liquid.user.entity.UserAddressEntity;
-import com.liquid.user.entity.UserEntity;
 import com.liquid.user.repository.UserAddressRepository;
 import com.liquid.user.repository.UserRepository;
+import com.liquid.util.exception.Exception;
 
 @Service
 public class UserAddressServiceImpl implements UserAddressService {
@@ -21,30 +19,24 @@ public class UserAddressServiceImpl implements UserAddressService {
 	private UserRepository userRepository;
 
 	@Override
-	public UserAddressEntity find(Long id) {
-		Optional<UserAddressEntity> address = userAddressRepository.findOneById(id);
-		return address.get();
-	}
-
-	@Override
-	public List<UserAddressEntity> list() {
-		return userAddressRepository.findAll();
-	}
-
-	@Override
+	@Transactional
 	public UserAddressEntity create(Long userId, UserAddressEntity address) {
-		address.setUser(userRepository.findOneById(userId).orElse(new UserEntity()));
+		address.setUser(userRepository.findOneById(userId).orElseThrow(() -> Exception.USER_NOT_FOUND.raise()));
 		return userAddressRepository.save(address);
 	}
 
 	@Override
-	public UserAddressEntity update(Long id, UserAddressEntity address) {
-		return userAddressRepository.save(address);
+	@Transactional
+	public UserAddressEntity update(Long id, UserAddressEntity userAddress) {
+		UserAddressEntity currentUserAddress = userAddressRepository.findOneById(id).orElseThrow(() -> Exception.ADDRESS_NOT_FOUND.raise());
+		currentUserAddress.load(userAddress);
+		return userAddressRepository.save(currentUserAddress);
 	}
 
 	@Override
-	public UserAddressEntity delete(Long id) {
-		return userAddressRepository.deleteOneById(id).get();
+	@Transactional
+	public void delete(Long id) {
+		userAddressRepository.deleteOneById(id).get();
 	}
 
 }

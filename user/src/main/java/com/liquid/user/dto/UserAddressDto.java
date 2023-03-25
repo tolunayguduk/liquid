@@ -11,13 +11,15 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AddressDto {
+public class UserAddressDto {
 
+	private Long id;
+	private Long userId;
 	private String country;
 	private String city;
-	private int zipCode;
+	private String zipCode;
 	private String address;
-	private int status;
+	private Boolean status;
 	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
 	private LocalDateTime createDate;
 	private String createdBy;

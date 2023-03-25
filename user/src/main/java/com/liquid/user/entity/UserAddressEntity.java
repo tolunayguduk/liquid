@@ -41,13 +41,13 @@ public class UserAddressEntity {
 	private String city;
 
 	@Column(name = "ZIP_CODE")
-	private int zipCode;
+	private String zipCode;
 
 	@Column(name = "ADDRESS")
 	private String address;
 
 	@Column(name = "STATUS")
-	private int status;
+	private Boolean status;
 
 	@Column(name = "CREATE_DATE")
 	private LocalDateTime createDate;
@@ -60,4 +60,20 @@ public class UserAddressEntity {
 
 	@Column(name = "UPDATED_BY")
 	private String updatedBy;
+
+	public void load(UserAddressEntity userAddress) {
+		if (userAddress.getCountry() != null)
+			this.country = userAddress.getCountry();
+		if (userAddress.getCity() != null)
+			this.city = userAddress.getCity();
+		if (userAddress.getZipCode() != null)
+			this.zipCode = userAddress.getZipCode();
+		if (userAddress.getAddress() != null)
+			this.address = userAddress.getAddress();
+		if (userAddress.getUserId() != null)
+			this.userId = userAddress.getUserId();
+		if (userAddress.getStatus() != null)
+			this.status = userAddress.getStatus();
+		
+	}
 }
