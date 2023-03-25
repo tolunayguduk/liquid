@@ -5,7 +5,8 @@ import org.springframework.http.HttpStatus;
 public enum Exception {
 	
 	USER_NOT_FOUND(1000L, "Kullanıcı bulunamadı.", HttpStatus.NOT_FOUND),
-	ROLE_NOT_FOUND(2000L, "Rol bulunamadı.", HttpStatus.NOT_FOUND);
+	ROLE_NOT_FOUND(2000L, "Rol bulunamadı.", HttpStatus.NOT_FOUND),
+	PASSWORD_NOT_FOUND(3000L, "Parola bulunamadı.", HttpStatus.NOT_FOUND);
 	
 	private Long code;
 	private String explanation;

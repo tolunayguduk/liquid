@@ -17,6 +17,6 @@ public interface UserService {
 
 	UserEntity update(Long id, UserEntity user) throws CustomException;
 
-	UserEntity delete(Long id) throws CustomException;
+	void delete(Long id) throws CustomException;
 
 }

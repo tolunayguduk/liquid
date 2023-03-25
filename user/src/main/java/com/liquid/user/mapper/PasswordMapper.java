@@ -5,7 +5,7 @@ import java.util.List;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-import com.liquid.user.dto.PasswordDto;
+import com.liquid.user.dto.UserPasswordDto;
 import com.liquid.user.entity.UserPasswordEntity;
 
 @Mapper(componentModel = "spring")
@@ -13,12 +13,12 @@ public interface PasswordMapper {
 
 	PasswordMapper INSTANCE = Mappers.getMapper(PasswordMapper.class);
 
-	public PasswordDto toDto(UserPasswordEntity entity);
+	public UserPasswordDto toDto(UserPasswordEntity entity);
 
-	public List<PasswordDto> toDto(List<UserPasswordEntity> entity);
+	public List<UserPasswordDto> toDto(List<UserPasswordEntity> entity);
 
-	public UserPasswordEntity toEntity(PasswordDto dto);
+	public UserPasswordEntity toEntity(UserPasswordDto dto);
 
-	public List<UserPasswordEntity> toEntity(List<PasswordDto> dto);
+	public List<UserPasswordEntity> toEntity(List<UserPasswordDto> dto);
 
 }

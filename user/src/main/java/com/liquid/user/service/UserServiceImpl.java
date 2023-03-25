@@ -2,6 +2,8 @@ package com.liquid.user.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,26 +19,31 @@ public class UserServiceImpl implements UserService {
 	private UserRepository userRepository;
 
 	@Override
+	@Transactional
 	public List<UserEntity> list() {
 		return userRepository.findAll();
 	}
 	
 	@Override
+	@Transactional
 	public UserEntity find(Long id) {
 		return userRepository.findOneById(id).orElseThrow(() -> Exception.USER_NOT_FOUND.raise());
 	}
 
 	@Override
+	@Transactional
 	public UserEntity find(String username) throws CustomException {
 		return userRepository.findOneByUsername(username).orElseThrow(() -> Exception.USER_NOT_FOUND.raise());
 	}
 
 	@Override
+	@Transactional
 	public UserEntity create(UserEntity user) {
 		return userRepository.save(user);
 	}
 
 	@Override
+	@Transactional
 	public UserEntity update(Long id, UserEntity user) {
 		UserEntity currentUser = userRepository.findOneById(id).orElseThrow(() -> Exception.USER_NOT_FOUND.raise());
 		currentUser.load(user);
@@ -44,8 +51,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserEntity delete(Long id) {
-		return userRepository.deleteOneById(id).orElseThrow(() -> Exception.USER_NOT_FOUND.raise());
+	@Transactional
+	public void delete(Long id) {
+		userRepository.deleteOneById(id).orElseThrow(() -> Exception.USER_NOT_FOUND.raise());
 	}
 
 }

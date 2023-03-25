@@ -1,15 +1,14 @@
 package com.liquid.user.service;
 
-import java.util.List;
-import java.util.Optional;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.liquid.user.entity.UserEntity;
 import com.liquid.user.entity.UserPasswordEntity;
 import com.liquid.user.repository.UserPasswordRepository;
 import com.liquid.user.repository.UserRepository;
+import com.liquid.util.exception.Exception;
 
 @Service
 public class UserPasswordServiceImpl implements UserPasswordService {
@@ -21,29 +20,23 @@ public class UserPasswordServiceImpl implements UserPasswordService {
 	private UserRepository userRepository;
 
 	@Override
-	public UserPasswordEntity find(Long id) {
-		Optional<UserPasswordEntity> password = userPasswordRepository.findOneById(id);
-		return password.get();
-	}
-
-	@Override
-	public List<UserPasswordEntity> list() {
-		return userPasswordRepository.findAll();
-	}
-
-	@Override
+	@Transactional
 	public UserPasswordEntity create(Long userId, UserPasswordEntity password) {
-		password.setUser(userRepository.findOneById(userId).orElse(new UserEntity()));
+		password.setUser(userRepository.findOneById(userId).orElseThrow(() -> Exception.USER_NOT_FOUND.raise()));
 		return userPasswordRepository.save(password);
 	}
 
 	@Override
-	public UserPasswordEntity update(Long id, UserPasswordEntity password) {
-		return userPasswordRepository.save(password);
+	@Transactional
+	public UserPasswordEntity update(Long id, UserPasswordEntity userPassword) {
+		UserPasswordEntity currentUserPassword = userPasswordRepository.findOneById(id).orElseThrow(() -> Exception.PASSWORD_NOT_FOUND.raise());
+		currentUserPassword.load(userPassword);
+		return userPasswordRepository.save(currentUserPassword);
 	}
 
 	@Override
-	public UserPasswordEntity delete(Long id) {
-		return userPasswordRepository.deleteOneById(id).get();
+	@Transactional
+	public void delete(Long id) {
+		userPasswordRepository.deleteOneById(id).orElseThrow(() -> Exception.PASSWORD_NOT_FOUND.raise());
 	}
 }

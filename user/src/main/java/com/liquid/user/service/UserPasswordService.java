@@ -1,19 +1,14 @@
 package com.liquid.user.service;
 
-import java.util.List;
-
 import com.liquid.user.entity.UserPasswordEntity;
+import com.liquid.util.exception.CustomException;
 
 public interface UserPasswordService {
 
-	UserPasswordEntity find(Long id);
+	UserPasswordEntity create(Long userId, UserPasswordEntity password) throws CustomException;;
 
-	List<UserPasswordEntity> list();
+	UserPasswordEntity update(Long id, UserPasswordEntity password) throws CustomException;;
 
-	UserPasswordEntity create(Long userId, UserPasswordEntity password);
-
-	UserPasswordEntity delete(Long id);
-
-	UserPasswordEntity update(Long id, UserPasswordEntity password);
+	void delete(Long id) throws CustomException;;
 
 }

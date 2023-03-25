@@ -35,10 +35,10 @@ public class UserPasswordEntity {
 	private Long userId;
 
 	@Column(name = "PASSWORD")
-	private String email;
+	private String password;
 
 	@Column(name = "STATUS")
-	private int status;
+	private Boolean status;
 
 	@Column(name = "CREATE_DATE")
 	private LocalDateTime createDate;
@@ -51,4 +51,13 @@ public class UserPasswordEntity {
 
 	@Column(name = "UPDATED_BY")
 	private String updatedBy;
+
+	public void load(UserPasswordEntity userPassword) {
+		if (userPassword.getPassword() != null)
+			this.password = userPassword.getPassword();
+		if (userPassword.getUserId() != null)
+			this.userId = userPassword.getUserId();
+		if (userPassword.getStatus() != null)
+			this.status = userPassword.getStatus();
+	}
 }

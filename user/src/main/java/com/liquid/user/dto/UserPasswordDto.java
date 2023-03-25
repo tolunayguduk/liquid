@@ -11,10 +11,12 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PasswordDto {
+public class UserPasswordDto {
 
+	private Long id;
+	private Long userId;
 	private String password;
-	private int status;
+	private Boolean status;
 	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
 	private LocalDateTime createDate;
 	private String createdBy;
