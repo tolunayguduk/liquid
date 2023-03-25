@@ -11,10 +11,12 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class EmailDto {
+public class UserEmailDto {
 
+	private Long id;
+	private Long userId;
 	private String email;
-	private int status;
+	private Boolean status;
 	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
 	private LocalDateTime createDate;
 	private String createdBy;

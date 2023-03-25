@@ -38,7 +38,7 @@ public class UserEmailEntity {
 	private String email;
 
 	@Column(name = "STATUS")
-	private int status;
+	private Boolean status;
 
 	@Column(name = "CREATE_DATE")
 	private LocalDateTime createDate;
@@ -51,5 +51,15 @@ public class UserEmailEntity {
 
 	@Column(name = "UPDATED_BY")
 	private String updatedBy;
+
+	public void load(UserEmailEntity userEmail) {
+		if (userEmail.getEmail() != null)
+			this.email = userEmail.getEmail();
+		if (userEmail.getUserId() != null)
+			this.userId = userEmail.getUserId();
+		if (userEmail.getStatus() != null)
+			this.status = userEmail.getStatus();
+		
+	}
 
 }

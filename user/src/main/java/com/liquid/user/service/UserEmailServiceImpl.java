@@ -1,15 +1,13 @@
 package com.liquid.user.service;
 
-import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.liquid.user.entity.UserEmailEntity;
-import com.liquid.user.entity.UserEntity;
 import com.liquid.user.repository.UserEmailRepository;
 import com.liquid.user.repository.UserRepository;
+import com.liquid.util.exception.Exception;
 
 @Service
 public class UserEmailServiceImpl implements UserEmailService {
@@ -21,30 +19,24 @@ public class UserEmailServiceImpl implements UserEmailService {
 	private UserRepository userRepository;
 
 	@Override
-	public UserEmailEntity find(Long id) {
-		Optional<UserEmailEntity> email = userEmailRepository.findOneById(id);
-		return email.get();
-	}
-
-	@Override
-	public List<UserEmailEntity> list() {
-		return userEmailRepository.findAll();
-	}
-
-	@Override
+	@Transactional
 	public UserEmailEntity create(Long userId, UserEmailEntity email) {
-		email.setUser(userRepository.findOneById(userId).orElse(new UserEntity()));
+		email.setUser(userRepository.findOneById(userId).orElseThrow(() -> Exception.USER_NOT_FOUND.raise()));
 		return userEmailRepository.save(email);
 	}
 
 	@Override
-	public UserEmailEntity update(Long id, UserEmailEntity email) {
-		return userEmailRepository.save(email);
+	@Transactional
+	public UserEmailEntity update(Long id, UserEmailEntity userEmail) {
+		UserEmailEntity currentUserEmail = userEmailRepository.findOneById(id).orElseThrow(() -> Exception.EMAIL_NOT_FOUND.raise());
+		currentUserEmail.load(userEmail);
+		return userEmailRepository.save(currentUserEmail);
 	}
 
 	@Override
-	public UserEmailEntity delete(Long id) {
-		return userEmailRepository.deleteOneById(id).get();
+	@Transactional
+	public void delete(Long id) {
+		userEmailRepository.deleteOneById(id).orElseThrow(() -> Exception.EMAIL_NOT_FOUND.raise());;
 	}
 
 }
