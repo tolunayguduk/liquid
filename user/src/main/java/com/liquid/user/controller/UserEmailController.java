@@ -18,7 +18,7 @@ import com.liquid.user.service.UserEmailService;
 
 @RestController
 @RequestMapping("/email")
-public class EmailController {
+public class UserEmailController {
 
 	@Autowired
 	private UserEmailService service;
