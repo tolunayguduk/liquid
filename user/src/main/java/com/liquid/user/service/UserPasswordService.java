@@ -5,7 +5,7 @@ import com.liquid.util.exception.CustomException;
 
 public interface UserPasswordService {
 
-	UserPasswordEntity create(Long userId, UserPasswordEntity entity) throws CustomException;
+	void create(Long userId, UserPasswordEntity entity) throws CustomException;
 
 	UserPasswordEntity update(Long id, UserPasswordEntity entity) throws CustomException;
 
