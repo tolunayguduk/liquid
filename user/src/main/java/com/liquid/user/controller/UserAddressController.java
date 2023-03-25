@@ -18,7 +18,7 @@ import com.liquid.user.service.UserAddressService;
 
 @RestController
 @RequestMapping("/address")
-public class AddressController {
+public class UserAddressController {
 
 	@Autowired
 	private UserAddressService service;
@@ -40,8 +40,8 @@ public class AddressController {
 
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id") Long id) {
-		UserAddressEntity entity = service.delete(id);
-		return new ResponseEntity<>(addressMapper.toDto(entity), HttpStatus.OK);
+		service.delete(id);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 }
