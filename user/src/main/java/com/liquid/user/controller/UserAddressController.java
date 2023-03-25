@@ -28,8 +28,8 @@ public class UserAddressController {
 
 	@PostMapping("/create/{id}")
 	public ResponseEntity<?> create(@PathVariable("id") Long userId, @RequestBody UserAddressDto dto) {
-		UserAddressEntity entity = service.create(userId, addressMapper.toEntity(dto));
-		return new ResponseEntity<>(addressMapper.toDto(entity), HttpStatus.OK);
+		service.create(userId, addressMapper.toEntity(dto));
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@PutMapping("/update/{id}")

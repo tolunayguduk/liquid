@@ -28,8 +28,8 @@ public class UserEmailController {
 
 	@PostMapping("/create/{userId}")
 	public ResponseEntity<?> addEmail(@PathVariable("userId") Long userId, @RequestBody UserEmailDto dto) {
-		UserEmailEntity entity = service.create(userId, emailMapper.toEntity(dto));
-		return new ResponseEntity<>(emailMapper.toDto(entity), HttpStatus.OK);
+		service.create(userId, emailMapper.toEntity(dto));
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@PutMapping("/update/{id}")

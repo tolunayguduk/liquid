@@ -5,7 +5,7 @@ import com.liquid.util.exception.CustomException;
 
 public interface UserEmailService {
 
-	UserEmailEntity create(Long userId, UserEmailEntity entity) throws CustomException;
+	void create(Long userId, UserEmailEntity entity) throws CustomException;
 
 	UserEmailEntity update(Long id, UserEmailEntity entity) throws CustomException;
 

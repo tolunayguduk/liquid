@@ -20,9 +20,9 @@ public class UserAddressServiceImpl implements UserAddressService {
 
 	@Override
 	@Transactional
-	public UserAddressEntity create(Long userId, UserAddressEntity entity) {
+	public void create(Long userId, UserAddressEntity entity) {
 		entity.setUser(userRepository.findOneById(userId).orElseThrow(() -> Exception.USER_NOT_FOUND.raise()));
-		return userAddressRepository.save(entity);
+		userAddressRepository.save(entity);
 	}
 
 	@Override
