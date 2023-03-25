@@ -51,7 +51,7 @@ public class UserEntity {
 	private LocalDate birthDate;
 
 	@Column(name = "STATUS")
-	private int status;
+	private Boolean status;
 
 	@Column(name = "CREATE_DATE")
 	private LocalDateTime createDate;
@@ -72,4 +72,21 @@ public class UserEntity {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user", targetEntity = UserAddressEntity.class)
 	@LazyCollection(LazyCollectionOption.TRUE)
 	private List<UserAddressEntity> addresses = new ArrayList<>();
+
+	public void load(UserEntity user) {
+		if(user.getName() != null)
+			this.name = user.getName();
+		if(user.getSurname() != null)
+			this.surname = user.getSurname();
+		if(user.getUsername() != null)
+			this.username = user.getUsername();
+		if(user.getGender() != null)
+			this.gender = user.getGender();
+		if(user.getProfilePhotoLink() != null)
+			this.profilePhotoLink = user.getProfilePhotoLink();
+		if(user.getBirthDate() != null)
+			this.birthDate = user.getBirthDate();
+		if(user.getStatus() != null)
+			this.status = user.getStatus();
+	}
 }

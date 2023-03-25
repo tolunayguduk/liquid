@@ -20,7 +20,7 @@ public class UserDto {
 	private String gender;
 	@JsonFormat(pattern = "dd-MM-yyyy")
 	private LocalDate birthDate;
-	private int status;
+	private Boolean status;
 	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
 	private LocalDateTime createDate;
 	private String createdBy;
