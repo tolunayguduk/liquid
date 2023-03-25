@@ -21,17 +21,17 @@ public class UserPasswordServiceImpl implements UserPasswordService {
 
 	@Override
 	@Transactional
-	public UserPasswordEntity create(Long userId, UserPasswordEntity password) {
-		password.setUser(userRepository.findOneById(userId).orElseThrow(() -> Exception.USER_NOT_FOUND.raise()));
-		return userPasswordRepository.save(password);
+	public UserPasswordEntity create(Long userId, UserPasswordEntity entity) {
+		entity.setUser(userRepository.findOneById(userId).orElseThrow(() -> Exception.USER_NOT_FOUND.raise()));
+		return userPasswordRepository.save(entity);
 	}
 
 	@Override
 	@Transactional
-	public UserPasswordEntity update(Long id, UserPasswordEntity userPassword) {
-		UserPasswordEntity currentUserPassword = userPasswordRepository.findOneById(id).orElseThrow(() -> Exception.PASSWORD_NOT_FOUND.raise());
-		currentUserPassword.load(userPassword);
-		return userPasswordRepository.save(currentUserPassword);
+	public UserPasswordEntity update(Long id, UserPasswordEntity entity) {
+		UserPasswordEntity currentEntity = userPasswordRepository.findOneById(id).orElseThrow(() -> Exception.PASSWORD_NOT_FOUND.raise());
+		currentEntity.load(entity);
+		return userPasswordRepository.save(currentEntity);
 	}
 
 	@Override

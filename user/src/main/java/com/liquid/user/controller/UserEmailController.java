@@ -27,14 +27,14 @@ public class UserEmailController {
 	private EmailMapper emailMapper;
 
 	@PostMapping("/create/{userId}")
-	public ResponseEntity<?> addEmail(@PathVariable("userId") Long userId, @RequestBody UserEmailDto email) {
-		UserEmailEntity entity = service.create(userId, emailMapper.toEntity(email));
+	public ResponseEntity<?> addEmail(@PathVariable("userId") Long userId, @RequestBody UserEmailDto dto) {
+		UserEmailEntity entity = service.create(userId, emailMapper.toEntity(dto));
 		return new ResponseEntity<>(emailMapper.toDto(entity), HttpStatus.OK);
 	}
 
 	@PutMapping("/update/{id}")
-	public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody UserEmailDto email) {
-		UserEmailEntity entity = service.update(id, emailMapper.toEntity(email));
+	public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody UserEmailDto dto) {
+		UserEmailEntity entity = service.update(id, emailMapper.toEntity(dto));
 		return new ResponseEntity<>(emailMapper.toDto(entity), HttpStatus.OK);
 	}
 

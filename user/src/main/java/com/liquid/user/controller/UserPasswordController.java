@@ -27,14 +27,14 @@ public class UserPasswordController {
 	private PasswordMapper passwordMapper;
 
 	@PostMapping("/create/{userId}")
-	public ResponseEntity<?> addEmail(@PathVariable("userId") Long userId, @RequestBody UserPasswordDto userPasswordDto) {
-		UserPasswordEntity entity = service.create(userId, passwordMapper.toEntity(userPasswordDto));
+	public ResponseEntity<?> addEmail(@PathVariable("userId") Long userId, @RequestBody UserPasswordDto dto) {
+		UserPasswordEntity entity = service.create(userId, passwordMapper.toEntity(dto));
 		return new ResponseEntity<>(passwordMapper.toDto(entity), HttpStatus.OK);
 	}
 
 	@PutMapping("/update/{id}")
-	public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody UserPasswordDto userPasswordDto) {
-		UserPasswordEntity entity = service.update(id, passwordMapper.toEntity(userPasswordDto));
+	public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody UserPasswordDto dto) {
+		UserPasswordEntity entity = service.update(id, passwordMapper.toEntity(dto));
 		return new ResponseEntity<>(passwordMapper.toDto(entity), HttpStatus.OK);
 	}
 

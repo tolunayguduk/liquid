@@ -20,17 +20,17 @@ public class UserAddressServiceImpl implements UserAddressService {
 
 	@Override
 	@Transactional
-	public UserAddressEntity create(Long userId, UserAddressEntity address) {
-		address.setUser(userRepository.findOneById(userId).orElseThrow(() -> Exception.USER_NOT_FOUND.raise()));
-		return userAddressRepository.save(address);
+	public UserAddressEntity create(Long userId, UserAddressEntity entity) {
+		entity.setUser(userRepository.findOneById(userId).orElseThrow(() -> Exception.USER_NOT_FOUND.raise()));
+		return userAddressRepository.save(entity);
 	}
 
 	@Override
 	@Transactional
-	public UserAddressEntity update(Long id, UserAddressEntity userAddress) {
-		UserAddressEntity currentUserAddress = userAddressRepository.findOneById(id).orElseThrow(() -> Exception.ADDRESS_NOT_FOUND.raise());
-		currentUserAddress.load(userAddress);
-		return userAddressRepository.save(currentUserAddress);
+	public UserAddressEntity update(Long id, UserAddressEntity entity) {
+		UserAddressEntity currentEntity = userAddressRepository.findOneById(id).orElseThrow(() -> Exception.ADDRESS_NOT_FOUND.raise());
+		currentEntity.load(entity);
+		return userAddressRepository.save(currentEntity);
 	}
 
 	@Override

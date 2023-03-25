@@ -27,14 +27,14 @@ public class UserAddressController {
 	private AddressMapper addressMapper;
 
 	@PostMapping("/create/{id}")
-	public ResponseEntity<?> create(@PathVariable("id") Long userId, @RequestBody UserAddressDto address) {
-		UserAddressEntity entity = service.create(userId, addressMapper.toEntity(address));
+	public ResponseEntity<?> create(@PathVariable("id") Long userId, @RequestBody UserAddressDto dto) {
+		UserAddressEntity entity = service.create(userId, addressMapper.toEntity(dto));
 		return new ResponseEntity<>(addressMapper.toDto(entity), HttpStatus.OK);
 	}
 
 	@PutMapping("/update/{id}")
-	public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody UserAddressDto address) {
-		UserAddressEntity entity = service.update(id, addressMapper.toEntity(address));
+	public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody UserAddressDto dto) {
+		UserAddressEntity entity = service.update(id, addressMapper.toEntity(dto));
 		return new ResponseEntity<>(addressMapper.toDto(entity), HttpStatus.OK);
 	}
 

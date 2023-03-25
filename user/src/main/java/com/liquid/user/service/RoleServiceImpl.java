@@ -27,13 +27,13 @@ public class RoleServiceImpl implements RoleService {
 	}
 
 	@Override
-	public RoleEntity create(RoleEntity role) {
-		return roleRepository.save(role);
+	public RoleEntity create(RoleEntity entity) {
+		return roleRepository.save(entity);
 	}
 
 	@Override
-	public RoleEntity update(Long id, RoleEntity role) {
-		return roleRepository.save(role);
+	public RoleEntity update(Long id, RoleEntity entity) {
+		return roleRepository.save(entity);
 	}
 
 	@Override

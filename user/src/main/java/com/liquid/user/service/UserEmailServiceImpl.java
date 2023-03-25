@@ -20,17 +20,17 @@ public class UserEmailServiceImpl implements UserEmailService {
 
 	@Override
 	@Transactional
-	public UserEmailEntity create(Long userId, UserEmailEntity email) {
-		email.setUser(userRepository.findOneById(userId).orElseThrow(() -> Exception.USER_NOT_FOUND.raise()));
-		return userEmailRepository.save(email);
+	public UserEmailEntity create(Long userId, UserEmailEntity entity) {
+		entity.setUser(userRepository.findOneById(userId).orElseThrow(() -> Exception.USER_NOT_FOUND.raise()));
+		return userEmailRepository.save(entity);
 	}
 
 	@Override
 	@Transactional
-	public UserEmailEntity update(Long id, UserEmailEntity userEmail) {
-		UserEmailEntity currentUserEmail = userEmailRepository.findOneById(id).orElseThrow(() -> Exception.EMAIL_NOT_FOUND.raise());
-		currentUserEmail.load(userEmail);
-		return userEmailRepository.save(currentUserEmail);
+	public UserEmailEntity update(Long id, UserEmailEntity entity) {
+		UserEmailEntity currentEntity = userEmailRepository.findOneById(id).orElseThrow(() -> Exception.EMAIL_NOT_FOUND.raise());
+		currentEntity.load(entity);
+		return userEmailRepository.save(currentEntity);
 	}
 
 	@Override

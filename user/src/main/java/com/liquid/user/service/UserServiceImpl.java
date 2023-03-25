@@ -37,16 +37,16 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public UserEntity create(UserEntity user) {
-		return userRepository.save(user);
+	public UserEntity create(UserEntity entity) {
+		return userRepository.save(entity);
 	}
 
 	@Override
 	@Transactional
-	public UserEntity update(Long id, UserEntity user) {
-		UserEntity currentUser = userRepository.findOneById(id).orElseThrow(() -> Exception.USER_NOT_FOUND.raise());
-		currentUser.load(user);
-		return userRepository.save(currentUser);
+	public UserEntity update(Long id, UserEntity entity) {
+		UserEntity currentEntity = userRepository.findOneById(id).orElseThrow(() -> Exception.USER_NOT_FOUND.raise());
+		currentEntity.load(entity);
+		return userRepository.save(currentEntity);
 	}
 
 	@Override

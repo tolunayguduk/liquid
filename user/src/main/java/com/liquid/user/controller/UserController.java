@@ -48,14 +48,14 @@ public class UserController {
 	}
 
 	@PostMapping("/create")
-	public ResponseEntity<?> create(@RequestBody UserDto user) {
-		UserEntity entity = service.create(userMapper.toEntity(user));
+	public ResponseEntity<?> create(@RequestBody UserDto dto) {
+		UserEntity entity = service.create(userMapper.toEntity(dto));
 		return new ResponseEntity<>(userMapper.toDto(entity), HttpStatus.OK);
 	}
 
 	@PutMapping("/update/{id}")
-	public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody UserDto user) {
-		UserEntity entity = service.update(id, userMapper.toEntity(user));
+	public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody UserDto dto) {
+		UserEntity entity = service.update(id, userMapper.toEntity(dto));
 		return new ResponseEntity<>(userMapper.toDto(entity), HttpStatus.OK);
 	}
 

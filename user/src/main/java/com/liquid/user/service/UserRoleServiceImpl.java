@@ -32,14 +32,14 @@ public class UserRoleServiceImpl implements UserRoleService {
 	}
 
 	@Override
-	public UserRoleEntity create(Long userId, UserRoleEntity userRole) {
-		userRole.setUser(userRepository.findOneById(userId).orElse(new UserEntity()));
-		return userRoleRepository.save(userRole);
+	public UserRoleEntity create(Long userId, UserRoleEntity entity) {
+		entity.setUser(userRepository.findOneById(userId).orElse(new UserEntity()));
+		return userRoleRepository.save(entity);
 	}
 
 	@Override
-	public UserRoleEntity update(Long id, UserRoleEntity address) {
-		return userRoleRepository.save(address);
+	public UserRoleEntity update(Long id, UserRoleEntity entity) {
+		return userRoleRepository.save(entity);
 	}
 
 	@Override

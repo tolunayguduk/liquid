@@ -12,10 +12,10 @@ public interface UserService {
 	UserEntity find(Long id) throws CustomException;
 
 	UserEntity find(String username) throws CustomException;
-	
-	UserEntity create(UserEntity user) throws CustomException;
 
-	UserEntity update(Long id, UserEntity user) throws CustomException;
+	UserEntity create(UserEntity entity) throws CustomException;
+
+	UserEntity update(Long id, UserEntity entity) throws CustomException;
 
 	void delete(Long id) throws CustomException;
 
