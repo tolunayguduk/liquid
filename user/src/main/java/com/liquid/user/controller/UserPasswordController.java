@@ -27,7 +27,7 @@ public class UserPasswordController {
 	private PasswordMapper passwordMapper;
 
 	@PostMapping("/create/{userId}")
-	public ResponseEntity<?> addEmail(@PathVariable("userId") Long userId, @RequestBody UserPasswordDto dto) {
+	public ResponseEntity<?> create(@PathVariable("userId") Long userId, @RequestBody UserPasswordDto dto) {
 		service.create(userId, passwordMapper.toEntity(dto));
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
