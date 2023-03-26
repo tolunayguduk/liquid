@@ -1,9 +1,12 @@
 package com.liquid.user.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.liquid.user.dto.AddressDto;
+import com.liquid.user.entity.AddressEntity;
 import com.liquid.user.mapper.AddressMapper;
 import com.liquid.user.service.UserAddressService;
 
@@ -24,6 +28,12 @@ public class UserAddressController {
 
 	@Autowired
 	private AddressMapper addressMapper;
+	
+	@GetMapping("/find/{userId}")
+	public ResponseEntity<?> find(@PathVariable("userId") Long userId) {
+		List<AddressEntity> entity = service.find(userId);
+		return new ResponseEntity<>(addressMapper.toDto(entity), HttpStatus.OK);
+	}
 
 	@PostMapping("/create/{userId}")
 	public ResponseEntity<?> create(@PathVariable("userId") Long userId, @RequestBody AddressDto dto) {
