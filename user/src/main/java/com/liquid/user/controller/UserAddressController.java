@@ -32,7 +32,7 @@ public class UserAddressController {
 	}
 
 	@PutMapping("/update/{userId}/{addressId}")
-	public ResponseEntity<?> update(@PathVariable("userId") Long userId, Long addressId, @RequestBody AddressDto dto) {
+	public ResponseEntity<?> update(@PathVariable("userId") Long userId, @PathVariable("addressId") Long addressId, @RequestBody AddressDto dto) {
 		service.update(userId, addressId, addressMapper.toEntity(dto));
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
