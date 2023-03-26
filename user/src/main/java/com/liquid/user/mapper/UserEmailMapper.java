@@ -9,9 +9,9 @@ import com.liquid.user.dto.UserEmailDto;
 import com.liquid.user.entity.UserEmailEntity;
 
 @Mapper(componentModel = "spring")
-public interface EmailMapper {
+public interface UserEmailMapper {
 
-	EmailMapper INSTANCE = Mappers.getMapper(EmailMapper.class);
+	UserEmailMapper INSTANCE = Mappers.getMapper(UserEmailMapper.class);
 
 	public UserEmailDto toDto(UserEmailEntity entity);
 

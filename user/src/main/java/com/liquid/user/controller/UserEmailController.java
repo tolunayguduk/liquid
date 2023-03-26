@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.liquid.user.dto.UserEmailDto;
-import com.liquid.user.mapper.EmailMapper;
+import com.liquid.user.mapper.UserEmailMapper;
 import com.liquid.user.service.UserEmailService;
 
 @RestController
@@ -23,7 +23,7 @@ public class UserEmailController {
 	private UserEmailService service;
 
 	@Autowired
-	private EmailMapper emailMapper;
+	private UserEmailMapper emailMapper;
 
 	@PostMapping("/create/{userId}")
 	public ResponseEntity<?> addEmail(@PathVariable("userId") Long userId, @RequestBody UserEmailDto dto) {

@@ -31,9 +31,9 @@ public class UserAddressController {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
-	@PutMapping("/update/{id}")
-	public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody AddressDto dto) {
-		service.update(id, addressMapper.toEntity(dto));
+	@PutMapping("/update/{userId}/{addressId}")
+	public ResponseEntity<?> update(@PathVariable("userId") Long userId, Long addressId, @RequestBody AddressDto dto) {
+		service.update(userId, addressId, addressMapper.toEntity(dto));
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
