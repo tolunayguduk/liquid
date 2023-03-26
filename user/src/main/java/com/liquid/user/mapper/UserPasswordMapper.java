@@ -9,9 +9,9 @@ import com.liquid.user.dto.UserPasswordDto;
 import com.liquid.user.entity.UserPasswordEntity;
 
 @Mapper(componentModel = "spring")
-public interface PasswordMapper {
+public interface UserPasswordMapper {
 
-	PasswordMapper INSTANCE = Mappers.getMapper(PasswordMapper.class);
+	UserPasswordMapper INSTANCE = Mappers.getMapper(UserPasswordMapper.class);
 
 	public UserPasswordDto toDto(UserPasswordEntity entity);
 

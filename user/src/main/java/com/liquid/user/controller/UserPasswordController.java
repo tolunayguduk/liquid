@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.liquid.user.dto.UserPasswordDto;
 import com.liquid.user.entity.UserPasswordEntity;
-import com.liquid.user.mapper.PasswordMapper;
+import com.liquid.user.mapper.UserPasswordMapper;
 import com.liquid.user.service.UserPasswordService;
 
 @RestController
@@ -24,7 +24,7 @@ public class UserPasswordController {
 	private UserPasswordService service;
 
 	@Autowired
-	private PasswordMapper passwordMapper;
+	private UserPasswordMapper passwordMapper;
 
 	@PostMapping("/create/{userId}")
 	public ResponseEntity<?> create(@PathVariable("userId") Long userId, @RequestBody UserPasswordDto dto) {
