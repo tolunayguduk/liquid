@@ -7,7 +7,7 @@ public interface UserEmailService {
 
 	void create(Long userId, UserEmailEntity entity) throws CustomException;
 
-	UserEmailEntity update(Long id, UserEmailEntity entity) throws CustomException;
+	void update(Long userId, UserEmailEntity entity) throws CustomException;
 
 	void delete(Long id) throws CustomException;
 

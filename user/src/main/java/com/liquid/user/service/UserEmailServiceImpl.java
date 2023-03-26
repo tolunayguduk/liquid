@@ -27,10 +27,10 @@ public class UserEmailServiceImpl implements UserEmailService {
 
 	@Override
 	@Transactional
-	public UserEmailEntity update(Long id, UserEmailEntity entity) {
+	public void update(Long id, UserEmailEntity entity) {
 		UserEmailEntity currentEntity = userEmailRepository.findOneById(id).orElseThrow(() -> Exception.EMAIL_NOT_FOUND.raise());
 		currentEntity.load(entity);
-		return userEmailRepository.save(currentEntity);
+		userEmailRepository.save(currentEntity);
 	}
 
 	@Override

@@ -28,24 +28,19 @@ public class UserAddressEntity {
 	private Long id;
 
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ADDRESS_ID")
+	private AddressEntity address;
+
+	@Column(name = "ADDRESS_ID", insertable = false, updatable = false)
+	private Long addressId;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "USER_ID")
 	private UserEntity user;
 
 	@Column(name = "USER_ID", insertable = false, updatable = false)
 	private Long userId;
-
-	@Column(name = "COUNTRY")
-	private String country;
-
-	@Column(name = "CITY")
-	private String city;
-
-	@Column(name = "ZIP_CODE")
-	private String zipCode;
-
-	@Column(name = "ADDRESS")
-	private String address;
-
+	
 	@Column(name = "STATUS")
 	private Boolean status;
 
@@ -61,19 +56,12 @@ public class UserAddressEntity {
 	@Column(name = "UPDATED_BY")
 	private String updatedBy;
 
-	public void load(UserAddressEntity userAddress) {
-		if (userAddress.getCountry() != null)
-			this.country = userAddress.getCountry();
-		if (userAddress.getCity() != null)
-			this.city = userAddress.getCity();
-		if (userAddress.getZipCode() != null)
-			this.zipCode = userAddress.getZipCode();
-		if (userAddress.getAddress() != null)
-			this.address = userAddress.getAddress();
-		if (userAddress.getUserId() != null)
-			this.userId = userAddress.getUserId();
-		if (userAddress.getStatus() != null)
-			this.status = userAddress.getStatus();
-		
+	public void load(UserAddressEntity entity) {
+		if (entity.getAddress() != null)
+			this.address = entity.getAddress();
+		if (entity.getUserId() != null)
+			this.userId = entity.getUserId();
+		if (entity.getStatus() != null)
+			this.status = entity.getStatus();
 	}
 }

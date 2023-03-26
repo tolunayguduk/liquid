@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.liquid.user.dto.UserAddressDto;
-import com.liquid.user.entity.UserAddressEntity;
+import com.liquid.user.dto.AddressDto;
 import com.liquid.user.mapper.AddressMapper;
 import com.liquid.user.service.UserAddressService;
 
@@ -26,16 +25,16 @@ public class UserAddressController {
 	@Autowired
 	private AddressMapper addressMapper;
 
-	@PostMapping("/create/{id}")
-	public ResponseEntity<?> create(@PathVariable("id") Long userId, @RequestBody UserAddressDto dto) {
+	@PostMapping("/create/{userId}")
+	public ResponseEntity<?> create(@PathVariable("userId") Long userId, @RequestBody AddressDto dto) {
 		service.create(userId, addressMapper.toEntity(dto));
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@PutMapping("/update/{id}")
-	public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody UserAddressDto dto) {
-		UserAddressEntity entity = service.update(id, addressMapper.toEntity(dto));
-		return new ResponseEntity<>(addressMapper.toDto(entity), HttpStatus.OK);
+	public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody AddressDto dto) {
+		service.update(id, addressMapper.toEntity(dto));
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@DeleteMapping("/delete/{id}")

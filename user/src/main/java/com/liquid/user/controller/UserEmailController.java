@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.liquid.user.dto.UserEmailDto;
-import com.liquid.user.entity.UserEmailEntity;
 import com.liquid.user.mapper.EmailMapper;
 import com.liquid.user.service.UserEmailService;
 
@@ -32,10 +31,10 @@ public class UserEmailController {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
-	@PutMapping("/update/{id}")
-	public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody UserEmailDto dto) {
-		UserEmailEntity entity = service.update(id, emailMapper.toEntity(dto));
-		return new ResponseEntity<>(emailMapper.toDto(entity), HttpStatus.OK);
+	@PutMapping("/update/{userId}")
+	public ResponseEntity<?> update(@PathVariable("userId") Long userId, @RequestBody UserEmailDto dto) {
+		service.update(userId, emailMapper.toEntity(dto));
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@DeleteMapping("/delete/{id}")
