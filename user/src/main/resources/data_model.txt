@@ -42,6 +42,23 @@ CREATE TABLE `user_address` (
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin5 COMMENT='Kullanıcılara ait adres bilgisini tutar';
 
+CREATE TABLE `user_address_audit` (
+  `ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `REV` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `REVTYPE` bigint(20) unsigned NOT NULL,
+  `USER_ID` bigint(20) unsigned NOT NULL,
+  `COUNTRY` varchar(100) DEFAULT NULL,
+  `CITY` varchar(100) DEFAULT NULL,
+  `ZIP_CODE` int(11) DEFAULT NULL,
+  `ADDRESS` varchar(500) DEFAULT NULL,
+  `STATUS` int(11) DEFAULT NULL,
+  `CREATE_DATE` date DEFAULT NULL,
+  `CREATED_BY` varchar(100) DEFAULT NULL,
+  `UPDATE_DATE` date DEFAULT NULL,
+  `UPDATED_BY` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`REV`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin5 COMMENT='Kullanıcılara ait adres bilgilerinin tarihçesini tutar';
+
 -- myth.user_email definition
 
 CREATE TABLE `user_email` (

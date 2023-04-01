@@ -9,12 +9,9 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.liquid.user.dto.AddressDto;
 import com.liquid.user.entity.AddressEntity;
 import com.liquid.user.mapper.AddressMapper;
 import com.liquid.user.service.UserAddressService;
@@ -35,15 +32,9 @@ public class UserAddressController {
 		return new ResponseEntity<>(addressMapper.toDto(entity), HttpStatus.OK);
 	}
 
-	@PostMapping("/create/{userId}")
-	public ResponseEntity<?> create(@PathVariable("userId") Long userId, @RequestBody AddressDto dto) {
-		service.create(userId, addressMapper.toEntity(dto));
-		return new ResponseEntity<>(HttpStatus.OK);
-	}
-
-	@PutMapping("/update/{userId}/{addressId}")
-	public ResponseEntity<?> update(@PathVariable("userId") Long userId, @PathVariable("addressId") Long addressId, @RequestBody AddressDto dto) {
-		service.update(userId, addressId, addressMapper.toEntity(dto));
+	@PostMapping("/create/{userId}/{addressId}")
+	public ResponseEntity<?> create(@PathVariable("userId") Long userId, @PathVariable("addressId") Long addressId) {
+		service.create(userId, addressId);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
