@@ -25,6 +25,39 @@ CREATE TABLE `user` (
   UNIQUE KEY `user_un` (`USERNAME`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin5 COMMENT='Kullanıcılara ait default bilgileri tutar';
 
+-- myth.address definition
+
+CREATE TABLE `address` (
+  `ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `COUNTRY` varchar(100) DEFAULT NULL,
+  `CITY` varchar(100) DEFAULT NULL,
+  `ZIP_CODE` int(11) DEFAULT NULL,
+  `ADDRESS` varchar(500) DEFAULT NULL,
+  `STATUS` int(11) DEFAULT NULL,
+  `CREATE_DATE` datetime DEFAULT NULL,
+  `CREATED_BY` varchar(100) DEFAULT NULL,
+  `UPDATE_DATE` datetime DEFAULT NULL,
+  `UPDATED_BY` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin5 COMMENT='Adres bilgisini tutar';
+
+CREATE TABLE `address_audit` (
+  `ID` bigint(20) unsigned NOT NULL,
+  `REV` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `REVTYPE` bigint(20) unsigned NOT NULL,
+  `COUNTRY` varchar(100) DEFAULT NULL,
+  `CITY` varchar(100) DEFAULT NULL,
+  `ZIP_CODE` int(11) DEFAULT NULL,
+  `ADDRESS` varchar(500) DEFAULT NULL,
+  `STATUS` int(11) DEFAULT NULL,
+  `CREATE_DATE` datetime DEFAULT NULL,
+  `CREATED_BY` varchar(100) DEFAULT NULL,
+  `UPDATE_DATE` datetime DEFAULT NULL,
+  `UPDATED_BY` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`REV`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin5 COMMENT='Adres bilgilerinin tarihçesini tutar';
+
+
 -- myth.user_address definition
 
 CREATE TABLE `user_address` (
@@ -43,7 +76,7 @@ CREATE TABLE `user_address` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin5 COMMENT='Kullanıcılara ait adres bilgisini tutar';
 
 CREATE TABLE `user_address_audit` (
-  `ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `ID` bigint(20) unsigned NOT NULL,
   `REV` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `REVTYPE` bigint(20) unsigned NOT NULL,
   `USER_ID` bigint(20) unsigned NOT NULL,

@@ -25,7 +25,6 @@ public class UserEmailServiceImpl implements UserEmailService {
 
 	@Override
 	public List<UserEmailEntity> find(Long userId) throws CustomException {
-		// TODO Auto-generated method stub
 		return userEmailRepository.findByUserId(userId).orElseThrow(() -> Exception.EMAIL_NOT_FOUND.raise());
 	}
 	

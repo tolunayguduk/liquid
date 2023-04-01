@@ -8,7 +8,7 @@ public enum Exception {
 	ROLE_NOT_FOUND(2000L, "Rol bulunamadı.", HttpStatus.NOT_FOUND),
 	PASSWORD_NOT_FOUND(3000L, "Parola bulunamadı.", HttpStatus.NOT_FOUND),
 	EMAIL_NOT_FOUND(4000L, "Email bulunamadı.", HttpStatus.NOT_FOUND),
-	ADDRESS_NOT_FOUND(3000L, "Adres bulunamadı.", HttpStatus.NOT_FOUND);
+	ADDRESS_NOT_FOUND(5000L, "Adres bulunamadı.", HttpStatus.NOT_FOUND);
 	
 	private Long code;
 	private String explanation;
