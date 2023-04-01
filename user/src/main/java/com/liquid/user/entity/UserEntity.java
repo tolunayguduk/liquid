@@ -16,6 +16,12 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.envers.AuditTable;
+import org.hibernate.envers.Audited;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,6 +32,8 @@ import lombok.NoArgsConstructor;
 @Table(name = "USER")
 @AllArgsConstructor
 @NoArgsConstructor
+@Audited
+@AuditTable(value = "USER_AUDIT")
 public class UserEntity {
 
 	@Id

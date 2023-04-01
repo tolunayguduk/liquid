@@ -12,6 +12,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.envers.AuditTable;
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,6 +25,8 @@ import lombok.NoArgsConstructor;
 @Table(name = "USER_EMAIL")
 @AllArgsConstructor
 @NoArgsConstructor
+@Audited
+@AuditTable(value = "USER_EMAIL_AUDIT")
 public class UserEmailEntity {
 
 	@Id

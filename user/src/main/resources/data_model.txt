@@ -1,3 +1,11 @@
+-- myth.`revision` definition
+
+CREATE TABLE `revision` (
+  `REV` int(20) NOT NULL AUTO_INCREMENT,
+  `REVTSTMP` bigint(20) NOT NULL,
+  PRIMARY KEY (`REV`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin5 COMMENT='Historik versiyon bilgisini tutar';
+
 -- myth.`user` definition
 
 CREATE TABLE `user` (
@@ -15,7 +23,7 @@ CREATE TABLE `user` (
   `UPDATED_BY` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `user_un` (`USERNAME`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin5;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin5 COMMENT='Kullanıcılara ait default bilgileri tutar';
 
 -- myth.user_address definition
 
@@ -48,6 +56,21 @@ CREATE TABLE `user_email` (
   PRIMARY KEY (`ID`),
   UNIQUE KEY `USER_EMAIL_un` (`EMAIL`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin5 COMMENT='Kullanıcılara ait email bilgilerini tutar';
+
+CREATE TABLE `user_email_audit` (
+  `ID` bigint(20) unsigned NOT NULL,
+  `REV` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `REVTYPE` bigint(20) unsigned NOT NULL,
+  `USER_ID` bigint(20) unsigned NOT NULL,
+  `EMAIL` varchar(100) DEFAULT NULL,
+  `STATUS` int(11) DEFAULT NULL,
+  `CREATE_DATE` date DEFAULT NULL,
+  `CREATED_BY` varchar(100) DEFAULT NULL,
+  `UPDATE_DATE` date DEFAULT NULL,
+  `UPDATED_BY` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`REV`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin5 COMMENT='Kullanıcılara ait email bilgilerinin tarihçesini tutar';
+
 
 -- myth.user_password definition
 
