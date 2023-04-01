@@ -36,22 +36,13 @@ public class UserRoleServiceImpl implements UserRoleService {
 
 	@Override
 	@Transactional
-	public void create(Long userId, RoleEntity entity) {
+	public void create(Long userId, Long roleId) {
 		UserRoleEntity userRoleEntity = new UserRoleEntity();
-		RoleEntity role = roleRepository.save(entity);
-		
+
 		userRoleEntity.setUser(userRepository.findOneById(userId).orElseThrow(() -> Exception.USER_NOT_FOUND.raise()));
-		userRoleEntity.setRole(role);
+		userRoleEntity.setRole(roleRepository.findOneById(roleId).orElseThrow(() -> Exception.ROLE_NOT_FOUND.raise()));
 		
 		userRoleRepository.save(userRoleEntity);
-	}
-
-	@Override
-	@Transactional
-	public void update(Long userId, Long roleId, RoleEntity entity) {
-		UserRoleEntity currentEntity = userRoleRepository.findOneByUserIdAndRoleId(userId, roleId).orElseThrow(() -> Exception.ROLE_NOT_FOUND.raise());
-		currentEntity.getRole().load(entity);
-		userRoleRepository.save(currentEntity);
 	}
 
 	@Override
