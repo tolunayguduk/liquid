@@ -76,6 +76,10 @@ public class UserEntity {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user", targetEntity = UserAddressEntity.class)
 	@LazyCollection(LazyCollectionOption.TRUE)
 	private List<UserAddressEntity> addresses = new ArrayList<>();
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user", targetEntity = UserRoleEntity.class)
+	@LazyCollection(LazyCollectionOption.TRUE)
+	private List<UserRoleEntity> userRoles = new ArrayList<>();
 
 	public void load(UserEntity user) {
 		if(user.getName() != null)

@@ -2,19 +2,17 @@ package com.liquid.user.service;
 
 import java.util.List;
 
-import com.liquid.user.entity.UserRoleEntity;
+import com.liquid.user.entity.RoleEntity;
 import com.liquid.util.exception.CustomException;
 
 public interface UserRoleService {
 
-	UserRoleEntity find(Long id) throws CustomException;
+	List<RoleEntity> find(Long userId) throws CustomException;
+	
+	void create(Long userId, RoleEntity entity) throws CustomException;
 
-	List<UserRoleEntity> list() throws CustomException;
+	void update(Long userId, Long addressId, RoleEntity entity) throws CustomException;
 
-	UserRoleEntity create(Long userId, UserRoleEntity entity) throws CustomException;
-
-	UserRoleEntity delete(Long id) throws CustomException;
-
-	UserRoleEntity update(Long id, UserRoleEntity entity) throws CustomException;
+	void delete(Long id) throws CustomException;
 
 }

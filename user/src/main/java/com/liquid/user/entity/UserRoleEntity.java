@@ -13,6 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.envers.AuditTable;
+import org.hibernate.envers.Audited;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,6 +25,8 @@ import lombok.NoArgsConstructor;
 @Table(name = "USER_ROLE")
 @AllArgsConstructor
 @NoArgsConstructor
+@Audited
+@AuditTable(value = "USER_ROLE_AUDIT")
 public class UserRoleEntity {
 
 	@Id
@@ -49,7 +54,7 @@ public class UserRoleEntity {
 	private Date expiryDate;
 
 	@Column(name = "STATUS")
-	private int status;
+	private Boolean status;
 
 	@Column(name = "CREATE_DATE")
 	private LocalDateTime createDate;
@@ -62,5 +67,14 @@ public class UserRoleEntity {
 
 	@Column(name = "UPDATED_BY")
 	private String updatedBy;
+	
+	public void load(UserRoleEntity entity) {
+		if (entity.getRole() != null)
+			this.role = entity.getRole();
+		if (entity.getUserId() != null)
+			this.userId = entity.getUserId();
+		if (entity.getStatus() != null)
+			this.status = entity.getStatus();
+	}
 
 }

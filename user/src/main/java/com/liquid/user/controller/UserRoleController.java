@@ -17,45 +17,39 @@ import org.springframework.web.bind.annotation.RestController;
 import com.liquid.user.dto.RoleDto;
 import com.liquid.user.entity.RoleEntity;
 import com.liquid.user.mapper.RoleMapper;
-import com.liquid.user.service.RoleService;
+import com.liquid.user.service.UserRoleService;
 
 @RestController
 @RequestMapping("/role")
-public class RoleController {
+public class UserRoleController {
 
 	@Autowired
-	private RoleService service;
+	private UserRoleService service;
 
 	@Autowired
 	private RoleMapper roleMapper;
-
-	@GetMapping("/list")
-	public ResponseEntity<?> list() {
-		List<RoleEntity> entityList = service.list();
-		return new ResponseEntity<>(roleMapper.toDto(entityList), HttpStatus.OK);
-	}
-
-	@GetMapping("/find/{id}")
-	public ResponseEntity<?> find(@PathVariable("id") Long id) {
-		RoleEntity entity = service.find(id);
+	
+	@GetMapping("/find/{userId}")
+	public ResponseEntity<?> find(@PathVariable("userId") Long userId) {
+		List<RoleEntity> entity = service.find(userId);
 		return new ResponseEntity<>(roleMapper.toDto(entity), HttpStatus.OK);
 	}
 
-	@PostMapping("/create")
-	public ResponseEntity<?> create(@RequestBody RoleDto user) {
-		RoleEntity entity = service.create(roleMapper.toEntity(user));
-		return new ResponseEntity<>(roleMapper.toDto(entity), HttpStatus.OK);
+	@PostMapping("/create/{userId}")
+	public ResponseEntity<?> create(@PathVariable("userId") Long userId, @RequestBody RoleDto dto) {
+		service.create(userId, roleMapper.toEntity(dto));
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
-	@PutMapping("/update/{id}")
-	public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody RoleDto role) {
-		RoleEntity entity = service.update(id, roleMapper.toEntity(role));
-		return new ResponseEntity<>(roleMapper.toDto(entity), HttpStatus.OK);
+	@PutMapping("/update/{userId}/{roleId}")
+	public ResponseEntity<?> update(@PathVariable("userId") Long userId, @PathVariable("roleId") Long roleId, @RequestBody RoleDto dto) {
+		service.update(userId, roleId, roleMapper.toEntity(dto));
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id") Long id) {
-		RoleEntity entity = service.delete(id);
-		return new ResponseEntity<>(roleMapper.toDto(entity), HttpStatus.OK);
+		service.delete(id);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }
