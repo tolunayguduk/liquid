@@ -19,7 +19,7 @@ public class UserRoleDto {
 	private int isTemporary;
 	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
 	private Date expiryDate;
-	private int status;
+	private Boolean status;
 	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
 	private LocalDateTime createDate;
 	private String createdBy;

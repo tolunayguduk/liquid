@@ -15,7 +15,7 @@ public class RoleDto {
 
 	private String name;
 	private String description;
-	private int status;
+	private Boolean status;
 	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
 	private LocalDateTime createDate;
 	private String createdBy;
