@@ -20,7 +20,7 @@ import com.liquid.user.mapper.UserEmailMapper;
 import com.liquid.user.service.UserEmailService;
 
 @RestController
-@RequestMapping("/email")
+@RequestMapping("/user-email")
 public class UserEmailController {
 
 	@Autowired

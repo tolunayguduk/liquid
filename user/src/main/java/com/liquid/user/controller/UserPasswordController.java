@@ -17,7 +17,7 @@ import com.liquid.user.mapper.UserPasswordMapper;
 import com.liquid.user.service.UserPasswordService;
 
 @RestController
-@RequestMapping("/password")
+@RequestMapping("/user-password")
 public class UserPasswordController {
 
 	@Autowired

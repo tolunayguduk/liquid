@@ -20,7 +20,7 @@ import com.liquid.user.mapper.RoleMapper;
 import com.liquid.user.service.UserRoleService;
 
 @RestController
-@RequestMapping("/role")
+@RequestMapping("/user-role")
 public class UserRoleController {
 
 	@Autowired

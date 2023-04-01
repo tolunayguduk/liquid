@@ -20,7 +20,7 @@ import com.liquid.user.mapper.AddressMapper;
 import com.liquid.user.service.UserAddressService;
 
 @RestController
-@RequestMapping("/address")
+@RequestMapping("/user-address")
 public class UserAddressController {
 
 	@Autowired
