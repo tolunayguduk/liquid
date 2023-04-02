@@ -25,6 +25,24 @@ CREATE TABLE `user` (
   UNIQUE KEY `user_un` (`USERNAME`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin5 COMMENT='Kullanıcılara ait default bilgileri tutar';
 
+CREATE TABLE `user_audit` (
+  `ID` bigint(20) unsigned NOT NULL,
+  `REV` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `REVTYPE` bigint(20) unsigned NOT NULL,
+  `NAME` varchar(100) DEFAULT NULL,
+  `SURNAME` varchar(100) DEFAULT NULL,
+  `USERNAME` varchar(100) DEFAULT NULL,
+  `GENDER` varchar(50) DEFAULT NULL,
+  `PROFILE_PHOTO_LINK` varchar(200) DEFAULT NULL,
+  `BIRTH_DATE` date DEFAULT NULL,
+  `STATUS` int(11) DEFAULT NULL,
+  `CREATE_DATE` date DEFAULT NULL,
+  `CREATED_BY` varchar(100) DEFAULT NULL,
+  `UPDATE_DATE` date DEFAULT NULL,
+  `UPDATED_BY` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`REV`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin5 COMMENT='Kullanıcılara ait default bilgilerin tarihçesini tutar';
+
 -- myth.address definition
 
 CREATE TABLE `address` (
@@ -62,35 +80,29 @@ CREATE TABLE `address_audit` (
 
 CREATE TABLE `user_address` (
   `ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `USER_ID` bigint(20) unsigned NOT NULL,
-  `COUNTRY` varchar(100) DEFAULT NULL,
-  `CITY` varchar(100) DEFAULT NULL,
-  `ZIP_CODE` int(11) DEFAULT NULL,
-  `ADDRESS` varchar(500) DEFAULT NULL,
+  `ADDRESS_ID` bigint(20) unsigned DEFAULT NULL,
+  `USER_ID` bigint(20) unsigned DEFAULT NULL,
   `STATUS` int(11) DEFAULT NULL,
-  `CREATE_DATE` date DEFAULT NULL,
+  `CREATE_DATE` datetime DEFAULT NULL,
   `CREATED_BY` varchar(100) DEFAULT NULL,
-  `UPDATE_DATE` date DEFAULT NULL,
+  `UPDATE_DATE` datetime DEFAULT NULL,
   `UPDATED_BY` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin5 COMMENT='Kullanıcılara ait adres bilgisini tutar';
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=latin5 COMMENT='Kullanıcı ve adres eşleşmelerini tutar';
 
 CREATE TABLE `user_address_audit` (
   `ID` bigint(20) unsigned NOT NULL,
   `REV` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `REVTYPE` bigint(20) unsigned NOT NULL,
-  `USER_ID` bigint(20) unsigned NOT NULL,
-  `COUNTRY` varchar(100) DEFAULT NULL,
-  `CITY` varchar(100) DEFAULT NULL,
-  `ZIP_CODE` int(11) DEFAULT NULL,
-  `ADDRESS` varchar(500) DEFAULT NULL,
+  `ADDRESS_ID` bigint(20) unsigned DEFAULT NULL,
+  `USER_ID` bigint(20) unsigned DEFAULT NULL,
   `STATUS` int(11) DEFAULT NULL,
-  `CREATE_DATE` date DEFAULT NULL,
+  `CREATE_DATE` datetime DEFAULT NULL,
   `CREATED_BY` varchar(100) DEFAULT NULL,
-  `UPDATE_DATE` date DEFAULT NULL,
+  `UPDATE_DATE` datetime DEFAULT NULL,
   `UPDATED_BY` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`REV`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin5 COMMENT='Kullanıcılara ait adres bilgilerinin tarihçesini tutar';
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=latin5 COMMENT='Kullanıcılara ait adres bilgilerinin tarihçesini tutar';
 
 -- myth.user_email definition
 
