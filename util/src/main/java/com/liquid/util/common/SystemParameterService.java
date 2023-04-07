@@ -3,11 +3,13 @@ package com.liquid.util.common;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.liquid.util.entity.SystemParameterEntity;
 import com.liquid.util.exception.Exception;
 import com.liquid.util.repository.SystemParameterRepository;
 
+@Component
 public class SystemParameterService {
 
 	@Autowired
