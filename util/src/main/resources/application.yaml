@@ -1,0 +1,12 @@
+server:
+  port: 0
+  servlet:
+    context-path: /common
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://admin:123@localhost:8083/eureka
