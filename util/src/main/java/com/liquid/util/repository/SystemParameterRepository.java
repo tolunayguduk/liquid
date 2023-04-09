@@ -4,9 +4,11 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import com.liquid.util.entity.SystemParameterEntity;
 
+@Repository
 public interface SystemParameterRepository extends JpaRepository<SystemParameterEntity, Long> {
 
 	Optional<SystemParameterEntity> findOneById(Long id);

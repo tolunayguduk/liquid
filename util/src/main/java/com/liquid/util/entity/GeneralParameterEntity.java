@@ -9,9 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.envers.AuditTable;
-import org.hibernate.envers.Audited;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,8 +18,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "GENERAL_PARAMETER")
 @AllArgsConstructor
 @NoArgsConstructor
-@Audited
-@AuditTable(value = "GENERAL_PARAMETER_AUDIT")
 public class GeneralParameterEntity {
 
 	@Id
