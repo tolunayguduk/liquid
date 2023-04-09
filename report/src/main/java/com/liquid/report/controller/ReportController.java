@@ -17,12 +17,6 @@ public class ReportController {
 
 	@Autowired
 	private UserService userService;
-	
-	@Autowired
-	private SystemParameterService systemParameterService;
-	
-	@Autowired
-	private GeneralParameterService generalParameterService;
 
 	@GetMapping("/")
 	public ResponseEntity<?> list() {
@@ -31,7 +25,7 @@ public class ReportController {
 
 	@GetMapping("/system-param")
 	public ResponseEntity<?> system() {
-		return new ResponseEntity<>(systemParameterService.get("JWT"), HttpStatus.OK);
+		return new ResponseEntity<>(SystemParameterService.get("JWT"), HttpStatus.OK);
 	}
 	
 }
