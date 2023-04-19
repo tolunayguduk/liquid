@@ -1,12 +1,14 @@
 package com.liquid.user.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.liquid.user.entity.AddressEntity;
 import com.liquid.user.repository.AddressRepository;
 import com.liquid.util.exception.Exception;
 
+@Service
 public class AddressServiceImpl implements AddressService {
 
 	@Autowired
