@@ -1,4 +1,4 @@
-package com.liquid.report.dto;
+package com.liquid.notification.dto;
 
 import java.util.Date;
 

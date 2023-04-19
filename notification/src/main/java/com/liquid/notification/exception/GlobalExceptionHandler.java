@@ -1,4 +1,4 @@
-package com.liquid.report.exception;
+package com.liquid.notification.exception;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 

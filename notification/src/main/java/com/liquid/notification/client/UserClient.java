@@ -1,10 +1,10 @@
-package com.liquid.report.client;
+package com.liquid.notification.client;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.liquid.report.dto.UserDto;
+import com.liquid.notification.dto.UserDto;
 
 @FeignClient(name = "user", url = "${feign.client.list.user}")
 public interface UserClient {

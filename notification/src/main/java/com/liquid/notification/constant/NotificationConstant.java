@@ -1,4 +1,4 @@
-package com.liquid.report.constant;
+package com.liquid.notification.constant;
 
 public class NotificationConstant {
 

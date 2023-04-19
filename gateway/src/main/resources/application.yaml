@@ -21,3 +21,7 @@ spring:
         uri: lb://report
         predicates:
         - Path=/report/**
+      - id: notification
+        uri: lb://notification
+        predicates:
+        - Path=/notification/**
