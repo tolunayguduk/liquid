@@ -2,5 +2,5 @@ package com.liquid.notification.service;
 
 public interface EmailService {
 
-	void send();
+	void send(String to, String subject, String message);
 }
