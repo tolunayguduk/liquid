@@ -11,4 +11,5 @@ public interface UserClient {
 
 	@GetMapping("/find/id/{id}")
 	public UserDto find(@PathVariable("id") Long id);
+
 }

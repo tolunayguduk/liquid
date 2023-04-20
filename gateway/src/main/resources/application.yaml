@@ -25,3 +25,7 @@ spring:
         uri: lb://notification
         predicates:
         - Path=/notification/**
+      - id: auth
+        uri: lb://auth
+        predicates:
+        - Path=/auth/**

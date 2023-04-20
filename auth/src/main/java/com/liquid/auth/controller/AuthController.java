@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/")
 public class AuthController {
-
-	@GetMapping("/")
-	public ResponseEntity<?> list() {
-		return new ResponseEntity<>(HttpStatus.OK);
-	}
+	
+    @GetMapping("/profile")
+    public ResponseEntity<?> profile() {
+    	return new ResponseEntity<>(HttpStatus.OK);
+    }
 	
 }
