@@ -24,4 +24,11 @@ feign:
         loggerLevel: BASIC
     list:
       user: localhost:8080/user
-    
+      keycloak: localhost:8080/realms/liquid_realm/protocol/openid-connect
+
+keycloak:
+  realm: liquid_realm
+  auth-server-url: http://localhost:8080
+  resource: liquid
+  public-client: true
+  bearer-only: true
