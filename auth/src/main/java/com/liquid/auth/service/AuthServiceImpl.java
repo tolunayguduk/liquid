@@ -16,21 +16,17 @@ public class AuthServiceImpl implements AuthService {
 
 	@Override
 	public AuthDto login(CredentialDto credential) {
-		return keyCloakClient.token(new KeyCloakDto("liquid", "password", "openid", credential.getUsername(), credential.getPassword(), null, null));
+		return keyCloakClient.token(new KeyCloakDto("liquid", "eRRfHXTESe2PwCD9eqH1o0KVFLjc9cKe", "password", "openid", credential.getUsername(), credential.getPassword(), null, null, null, null));
 	}
 
 	@Override
-	public boolean logout(String token) {
-
-
+	public AuthDto logout(AuthDto dto) {
+		return keyCloakClient.terminate(new KeyCloakDto("liquid", "eRRfHXTESe2PwCD9eqH1o0KVFLjc9cKe", null, null, null, null, null, dto.getRefresh_token(), null, null));
 		
-		Object auth = keyCloakClient.terminate(new KeyCloakDto("liquid", null, null, null, null, null, token));
-		
-		
-		return true;
 	}
 	
-	
-	
+	public AuthDto introspect(AuthDto dto) {
+		return keyCloakClient.introspect(new KeyCloakDto("liquid", "eRRfHXTESe2PwCD9eqH1o0KVFLjc9cKe", null, null, null, null, null, null, dto.getToken(), null));
+	}
 
 }

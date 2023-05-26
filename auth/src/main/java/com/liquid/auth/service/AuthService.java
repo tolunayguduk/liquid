@@ -7,5 +7,7 @@ public interface AuthService {
 
 	public AuthDto login(CredentialDto credential);
 
-	public boolean logout(String token);
+	public AuthDto logout(AuthDto dto);
+
+	public AuthDto introspect(AuthDto dto);
 }
