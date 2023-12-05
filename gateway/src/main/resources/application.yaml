@@ -13,6 +13,8 @@ spring:
     name: gateway
   cloud:
     gateway:
+      default-filters:
+        - TokenRelay
       routes:
       - id: user
         uri: lb://user
@@ -26,8 +28,18 @@ spring:
         uri: lb://notification
         predicates:
         - Path=/notification/**
+
+
   security:
     oauth2:
-      resource-server:
-        jwt:
-          issuer-uri: http://localhost:8020/auth/realms/liquid
+      client:
+        provider:
+          my-keycloak-provider:
+            issuer-uri: http://localhost:8020/auth/realms/liquid-keycloak
+        registration:
+          keycloak-spring-gateway-client:
+            provider: my-keycloak-provider
+            scope: openid
+            client-id: liquid-keycloak
+            client-secret: BEUplQ0IBCcxLCk3AMmsq5jwZN5yNZnH
+            authorization-grant-type: authorization_code

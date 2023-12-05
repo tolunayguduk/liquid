@@ -6,6 +6,11 @@ server:
 spring:
   application:
     name: report
+  security:
+    oauth2:
+      resource-server:
+        jwt:
+          jwk-set-uri: http://localhost:8020/auth/realms/liquid-keycloak/protocol/openid-connect/certs
 
 eureka:
   instance:
