@@ -18,6 +18,11 @@ public class ReportController {
 	@Autowired
 	private UserService userService;
 
+	@GetMapping("/hello")
+	public ResponseEntity<?> hello() {
+		return new ResponseEntity<>("hello", HttpStatus.OK);
+	}
+
 	@GetMapping("/")
 	public ResponseEntity<?> list() {
 		return new ResponseEntity<>(userService.find(1L), HttpStatus.OK);

@@ -17,6 +17,7 @@ public interface AddressMapper {
 
 	public List<AddressDto> toDto(List<AddressEntity> entity);
 
+
 	public AddressEntity toEntity(AddressDto dto);
 
 	public List<AddressEntity> toEntity(List<AddressDto> dto);
