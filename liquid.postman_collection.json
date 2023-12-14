@@ -1,0 +1,464 @@
+{
+	"info": {
+		"_postman_id": "d21fb97d-23fd-48ce-a906-3a7522f6f2a6",
+		"name": "liquid",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3753800"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"tolunayguduk\",\r\n    \"password\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refresh_token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "client_id",
+								"value": "liquid-client",
+								"type": "text"
+							},
+							{
+								"key": "client_secret",
+								"value": "x6duQXvCooKAErTPMs8re9kDPeDo7gp9",
+								"type": "text"
+							},
+							{
+								"key": "grant_type",
+								"value": "refresh_token",
+								"type": "text"
+							},
+							{
+								"key": "refresh_token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJiNGJmNWJhZS0xMGYyLTRiY2UtOWRlMi1jY2M3NDJiNzg3YmQifQ.eyJleHAiOjE3MDIwNzY5MzYsImlhdCI6MTcwMjA3NTEzNiwianRpIjoiNTYyMDU4NmUtMjA1Yi00NTMxLTgzODgtNDVjODA5NDVlZWNkIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDIwL2F1dGgvcmVhbG1zL2xpcXVpZC1kZXYiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjgwMjAvYXV0aC9yZWFsbXMvbGlxdWlkLWRldiIsInN1YiI6IjVhNzlhZjI2LTdlZGMtNDFkYi1hNmQ0LTc2MWQwYjA3NWQ4ZSIsInR5cCI6IlJlZnJlc2giLCJhenAiOiJsaXF1aWQtY2xpZW50Iiwic2Vzc2lvbl9zdGF0ZSI6Ijc4YjBjOTY5LWY1OTAtNDBmNi04ZjIxLWEyNmEwZjYzMGI5NyIsInNjb3BlIjoiZW1haWwgcHJvZmlsZSIsInNpZCI6Ijc4YjBjOTY5LWY1OTAtNDBmNi04ZjIxLWEyNmEwZjYzMGI5NyJ9.Q_Ch-yA2udApEEztP0qZUTnZsZI5GPxrvPxG1NHAYOo",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8020/auth/realms/liquid-dev/protocol/openid-connect/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8020",
+							"path": [
+								"auth",
+								"realms",
+								"liquid-dev",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "introspect",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"access_token\": \"eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJpNGpKbEtZamJPa1FiZGVjWDhyeWpyZ3RQaW8xaDRfLWtPaV95dWlGUUFvIn0.eyJleHAiOjE3MDI1NzAwNjEsImlhdCI6MTcwMjU2OTc2MSwianRpIjoiOWQ4MDY1YzEtYmFiOS00ZTcwLWI3YTEtOTM1NmIxNzI0ODk0IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDIwL2F1dGgvcmVhbG1zL2xpcXVpZC1kZXYiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiNWE3OWFmMjYtN2VkYy00MWRiLWE2ZDQtNzYxZDBiMDc1ZDhlIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoibGlxdWlkLWNsaWVudCIsInNlc3Npb25fc3RhdGUiOiIyZDBmY2NjZi1kYmIzLTQ3ZmMtODc4NS02NWJhNzQ5OGQ0NzYiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbIioiXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbImRlZmF1bHQtcm9sZXMtbGlxdWlkLWRldiIsIm9mZmxpbmVfYWNjZXNzIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6Im9wZW5pZCBlbWFpbCBwcm9maWxlIiwic2lkIjoiMmQwZmNjY2YtZGJiMy00N2ZjLTg3ODUtNjViYTc0OThkNDc2IiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJuYW1lIjoiVG9sdW5heSBHw7xkw7xrIiwicHJlZmVycmVkX3VzZXJuYW1lIjoidG9sdW5heWd1ZHVrIiwiZ2l2ZW5fbmFtZSI6IlRvbHVuYXkiLCJmYW1pbHlfbmFtZSI6IkfDvGTDvGsiLCJlbWFpbCI6Imd1ZHVrdG9sdW5heUBnbWFpbC5jb20ifQ.K9iQXA-pDVpvmPGlB5nQXPaO8cjbYqj8GrUEHbWu93QFe_iFWsFwYw9AtY5PgAFuLTm9dH3wQFTRxAHrGQBrlyMTYVe9erK-WNYRMP07h56-yruf3j9tug6bU4Dd_Yn3rBEN8zl709Zi0gDAvQcWhHfYeXHGSgFxA6ooSInQDfzqxTQmPwkjtVZbRTpPolTAL8jwEv1gI7p3m-WjgaYFAbx1RjBDB_t5k_tqRWfSHnUBWl0u2STyhl10CxPCVIys4A_fYFSO8ZvavovBrhpvjddLSk5hLzd66icDCmcWpfdPOn1pktSM1Uj1bBSG9_HaVrpr9hAvt0lynp_6dDoBAA\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/auth/introspect",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"auth",
+								"introspect"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refresh_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJiNGJmNWJhZS0xMGYyLTRiY2UtOWRlMi1jY2M3NDJiNzg3YmQifQ.eyJleHAiOjE3MDI1NzE1NjEsImlhdCI6MTcwMjU2OTc2MSwianRpIjoiN2E2MWY4YzgtMWM5NS00ZDA4LTg3MzMtZjFjZmFhOTg2ZmY2IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDIwL2F1dGgvcmVhbG1zL2xpcXVpZC1kZXYiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjgwMjAvYXV0aC9yZWFsbXMvbGlxdWlkLWRldiIsInN1YiI6IjVhNzlhZjI2LTdlZGMtNDFkYi1hNmQ0LTc2MWQwYjA3NWQ4ZSIsInR5cCI6IlJlZnJlc2giLCJhenAiOiJsaXF1aWQtY2xpZW50Iiwic2Vzc2lvbl9zdGF0ZSI6IjJkMGZjY2NmLWRiYjMtNDdmYy04Nzg1LTY1YmE3NDk4ZDQ3NiIsInNjb3BlIjoib3BlbmlkIGVtYWlsIHByb2ZpbGUiLCJzaWQiOiIyZDBmY2NjZi1kYmIzLTQ3ZmMtODc4NS02NWJhNzQ5OGQ0NzYifQ.m2qEDnmfcGbCPDX52ma4Yx2WGAZjj66kwJgUm4fJsZA\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/auth/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "report",
+			"item": [
+				{
+					"name": "hello",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJpNGpKbEtZamJPa1FiZGVjWDhyeWpyZ3RQaW8xaDRfLWtPaV95dWlGUUFvIn0.eyJleHAiOjE3MDIwODE0OTYsImlhdCI6MTcwMjA4MTE5NiwianRpIjoiN2U3ZjU4OWUtM2Y2Zi00ZmM1LTgxZjYtZDg4YTUzNDBjYjViIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDIwL2F1dGgvcmVhbG1zL2xpcXVpZC1kZXYiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiNWE3OWFmMjYtN2VkYy00MWRiLWE2ZDQtNzYxZDBiMDc1ZDhlIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoibGlxdWlkLWNsaWVudCIsInNlc3Npb25fc3RhdGUiOiJkZDQ2OGMxYy05OTEwLTQ1ODUtYWJlZS1jNjQ1MGFmOGZjNjUiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbIioiXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbImRlZmF1bHQtcm9sZXMtbGlxdWlkLWRldiIsIm9mZmxpbmVfYWNjZXNzIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJzaWQiOiJkZDQ2OGMxYy05OTEwLTQ1ODUtYWJlZS1jNjQ1MGFmOGZjNjUiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsIm5hbWUiOiJUb2x1bmF5IEfDvGTDvGsiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJ0b2x1bmF5Z3VkdWsiLCJnaXZlbl9uYW1lIjoiVG9sdW5heSIsImZhbWlseV9uYW1lIjoiR8O8ZMO8ayIsImVtYWlsIjoiZ3VkdWt0b2x1bmF5QGdtYWlsLmNvbSJ9.A3cM4mdAcbLfjDyNIU02gbyi4lwZXjmfARVGI_GqMe758fjzsLxkrbaduafhAKzmc2d3uF3PAuiaMkpVltZIU2qsmQTXf95ILClDxgtlumwiaxrXMxBKl19KaI-ona_-aHVQ_H8cZ-X6q3iQSn3ZKg1c09HDKkaFE2Ae42WAqPtMGoG8K-mrmVENr97RQS9ZVUNuOINoqqwtZu3xv4VJVvqPljvqSj-d9czTp-aY7WSXOk1hGZZK17fhFXKVuZuHW7UzQGgnedyK9CKuG2za_2755xJnz4tohVRM6Q63_Ae27nM6EeuVkpwTYwlXLaUeGAKhDPVa7etoDt-xRcodbw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/report/hello",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"report",
+								"hello"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "keycloak",
+			"item": [
+				{
+					"name": "token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "liquid-client",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "x6duQXvCooKAErTPMs8re9kDPeDo7gp9",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "tolunayguduk",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8020/auth/realms/liquid-dev/protocol/openid-connect/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8020",
+							"path": [
+								"auth",
+								"realms",
+								"liquid-dev",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refresh_token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "client_id",
+								"value": "liquid-client",
+								"type": "text"
+							},
+							{
+								"key": "client_secret",
+								"value": "x6duQXvCooKAErTPMs8re9kDPeDo7gp9",
+								"type": "text"
+							},
+							{
+								"key": "grant_type",
+								"value": "refresh_token",
+								"type": "text"
+							},
+							{
+								"key": "refresh_token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJiNGJmNWJhZS0xMGYyLTRiY2UtOWRlMi1jY2M3NDJiNzg3YmQifQ.eyJleHAiOjE3MDIwNzY5MzYsImlhdCI6MTcwMjA3NTEzNiwianRpIjoiNTYyMDU4NmUtMjA1Yi00NTMxLTgzODgtNDVjODA5NDVlZWNkIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDIwL2F1dGgvcmVhbG1zL2xpcXVpZC1kZXYiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjgwMjAvYXV0aC9yZWFsbXMvbGlxdWlkLWRldiIsInN1YiI6IjVhNzlhZjI2LTdlZGMtNDFkYi1hNmQ0LTc2MWQwYjA3NWQ4ZSIsInR5cCI6IlJlZnJlc2giLCJhenAiOiJsaXF1aWQtY2xpZW50Iiwic2Vzc2lvbl9zdGF0ZSI6Ijc4YjBjOTY5LWY1OTAtNDBmNi04ZjIxLWEyNmEwZjYzMGI5NyIsInNjb3BlIjoiZW1haWwgcHJvZmlsZSIsInNpZCI6Ijc4YjBjOTY5LWY1OTAtNDBmNi04ZjIxLWEyNmEwZjYzMGI5NyJ9.Q_Ch-yA2udApEEztP0qZUTnZsZI5GPxrvPxG1NHAYOo",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8020/auth/realms/liquid-dev/protocol/openid-connect/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8020",
+							"path": [
+								"auth",
+								"realms",
+								"liquid-dev",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "introspect_token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "liquid-client",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "x6duQXvCooKAErTPMs8re9kDPeDo7gp9",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJpNGpKbEtZamJPa1FiZGVjWDhyeWpyZ3RQaW8xaDRfLWtPaV95dWlGUUFvIn0.eyJleHAiOjE3MDIwNzYxNDIsImlhdCI6MTcwMjA3NTg0MiwianRpIjoiNTlhOTkxOTctYjk3Ny00MzhiLWE0NDYtMTNmZDEwNGQ3OWY0IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDIwL2F1dGgvcmVhbG1zL2xpcXVpZC1kZXYiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiNWE3OWFmMjYtN2VkYy00MWRiLWE2ZDQtNzYxZDBiMDc1ZDhlIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoibGlxdWlkLWNsaWVudCIsInNlc3Npb25fc3RhdGUiOiI4MDAzYTk5Yi0yMGU0LTQ0Y2QtYjk4ZS00YmJmZDE3NTNmNjYiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbIioiXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbImRlZmF1bHQtcm9sZXMtbGlxdWlkLWRldiIsIm9mZmxpbmVfYWNjZXNzIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJzaWQiOiI4MDAzYTk5Yi0yMGU0LTQ0Y2QtYjk4ZS00YmJmZDE3NTNmNjYiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsIm5hbWUiOiJUb2x1bmF5IEfDvGTDvGsiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJ0b2x1bmF5Z3VkdWsiLCJnaXZlbl9uYW1lIjoiVG9sdW5heSIsImZhbWlseV9uYW1lIjoiR8O8ZMO8ayIsImVtYWlsIjoiZ3VkdWt0b2x1bmF5QGdtYWlsLmNvbSJ9.Dvsp4kZ7yRu37i_36QGj_7AW9x_TlsC2YGPavXha7_LDAyDdt0WmZgon4HbN-D21og-S-Zl0LdwN72ze7fTh14EIfcKUmuYbODZnXcOD414ec0LwPiXYKuf5pYF3i-9hkg635PscZsJjtyqsi0W2XCszJ7Aq59FFXRXCGvBIxe5ZtrrT2JTYnN8uo9B4-U2PYgfYnxjlNYfXRt9PzbbA71erety77vz5NtCrafVtG9QbRTtnNLhPdeCJDuUkAmkmcUOMnQ9dpm5sIwtEkFjHPl-rXCp6RLo5hqbO4Tj1Bf10sGOXzmb8CUiac5e_3wExh6kn4UhOwqLCLffvXbtT1Q",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8020/auth/realms/liquid-dev/protocol/openid-connect/token/introspect",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8020",
+							"path": [
+								"auth",
+								"realms",
+								"liquid-dev",
+								"protocol",
+								"openid-connect",
+								"token",
+								"introspect"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "liquid-client",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "x6duQXvCooKAErTPMs8re9kDPeDo7gp9",
+									"type": "text"
+								},
+								{
+									"key": "refresh_token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJiNGJmNWJhZS0xMGYyLTRiY2UtOWRlMi1jY2M3NDJiNzg3YmQifQ.eyJleHAiOjE3MDIwNzc2NDIsImlhdCI6MTcwMjA3NTg0MiwianRpIjoiMmRiNTU1OTItNGZjYS00NWE2LThlNjgtYWRhMmVlOWFiMzA3IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDIwL2F1dGgvcmVhbG1zL2xpcXVpZC1kZXYiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjgwMjAvYXV0aC9yZWFsbXMvbGlxdWlkLWRldiIsInN1YiI6IjVhNzlhZjI2LTdlZGMtNDFkYi1hNmQ0LTc2MWQwYjA3NWQ4ZSIsInR5cCI6IlJlZnJlc2giLCJhenAiOiJsaXF1aWQtY2xpZW50Iiwic2Vzc2lvbl9zdGF0ZSI6IjgwMDNhOTliLTIwZTQtNDRjZC1iOThlLTRiYmZkMTc1M2Y2NiIsInNjb3BlIjoiZW1haWwgcHJvZmlsZSIsInNpZCI6IjgwMDNhOTliLTIwZTQtNDRjZC1iOThlLTRiYmZkMTc1M2Y2NiJ9.aY6iD8VR43FQcmN6MkXiac9F5Tb51H90kEcRP7L2dNY",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8020/auth/realms/liquid-dev/protocol/openid-connect/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8020",
+							"path": [
+								"auth",
+								"realms",
+								"liquid-dev",
+								"protocol",
+								"openid-connect",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "accessTokenUrl",
+				"value": "http://localhost:8020/auth/realms/liquid-keycloak/protocol/openid-connect/token",
+				"type": "string"
+			},
+			{
+				"key": "clientSecret",
+				"value": "BEUplQ0IBCcxLCk3AMmsq5jwZN5yNZnH",
+				"type": "string"
+			},
+			{
+				"key": "clientId",
+				"value": "liquid-keycloak",
+				"type": "string"
+			},
+			{
+				"key": "headerPrefix",
+				"value": "Bearer",
+				"type": "string"
+			},
+			{
+				"key": "refreshRequestParams",
+				"value": [],
+				"type": "any"
+			},
+			{
+				"key": "tokenRequestParams",
+				"value": [],
+				"type": "any"
+			},
+			{
+				"key": "authRequestParams",
+				"value": [],
+				"type": "any"
+			},
+			{
+				"key": "tokenName",
+				"value": "new-app-token",
+				"type": "string"
+			},
+			{
+				"key": "challengeAlgorithm",
+				"value": "S256",
+				"type": "string"
+			},
+			{
+				"key": "grant_type",
+				"value": "client_credentials",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			},
+			{
+				"key": "client_authentication",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "localhost:8000",
+			"type": "string"
+		}
+	]
+}

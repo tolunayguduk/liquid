@@ -1,11 +1,10 @@
 package com.liquid.auth.service;
 
 import com.liquid.auth.client.KeyCloakClient;
+import com.liquid.auth.dto.TokenDto;
 import com.liquid.auth.request.KeyCloakRequest;
-import com.liquid.auth.response.KeyCloakResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -28,18 +27,18 @@ public class AuthServiceImpl implements AuthService {
     private KeyCloakClient keyCloakClient;
 
     @Override
-    public KeyCloakResponse login(String username, String password) {
+    public Object login(String username, String password) {
         return keyCloakClient.token(new KeyCloakRequest(client_id, client_secret, authorization_grant_type, scope, username, password, null, null, null, null));
     }
 
     @Override
-    public ResponseEntity<?> logout(String refresh_token) {
-        return keyCloakClient.terminate(new KeyCloakRequest(client_id, client_secret, null, null, null, null, null, refresh_token, null, null));
+    public Object logout(TokenDto token) {
+        return keyCloakClient.terminate(new KeyCloakRequest(client_id, client_secret, null, null, null, null, null, token.getRefresh_token(), null, null));
 
     }
 
-    public ResponseEntity<?> introspect(String access_token) {
-        return keyCloakClient.introspect(new KeyCloakRequest(client_id, client_secret, null, null, null, null, null, null, access_token, null));
+    public Object introspect(TokenDto token) {
+        return keyCloakClient.introspect(new KeyCloakRequest(client_id, client_secret, null, null, null, null, null, null, token.getAccess_token(), null));
     }
 
 }

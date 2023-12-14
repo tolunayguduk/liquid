@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public interface KeyCloakClient {
 
     @RequestMapping(method = RequestMethod.POST, value = "/protocol/openid-connect/token", consumes = "application/x-www-form-urlencoded")
-    public KeyCloakResponse token(@RequestBody KeyCloakRequest request);
+    public Object token(@RequestBody KeyCloakRequest request);
 
     @RequestMapping(method = RequestMethod.POST, value = "/protocol/openid-connect/logout", consumes = "application/x-www-form-urlencoded")
-    public ResponseEntity<?> terminate(@RequestBody KeyCloakRequest request);
+    public Object terminate(@RequestBody KeyCloakRequest request);
 
     @RequestMapping(method = RequestMethod.POST, value = "/protocol/openid-connect/token/introspect", consumes = "application/x-www-form-urlencoded")
-    public ResponseEntity<?> introspect(@RequestBody KeyCloakRequest request);
+    public Object introspect(@RequestBody KeyCloakRequest request);
 
 }

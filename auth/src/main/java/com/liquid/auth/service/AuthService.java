@@ -1,10 +1,12 @@
 package com.liquid.auth.service;
 
+import com.liquid.auth.dto.TokenDto;
+
 public interface AuthService {
 
     public Object login(String username, String password);
 
-    public Object logout(String refresh_token);
+    public Object logout(TokenDto token);
 
-    public Object introspect(String access_token);
+    public Object introspect(TokenDto token);
 }
