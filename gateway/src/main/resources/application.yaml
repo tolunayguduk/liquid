@@ -11,9 +11,18 @@ eureka:
 spring:
   application:
     name: gateway
+  security:
+    oauth2:
+      resource-server:
+        jwt:
+          issuer-uri: http://localhost:8020/auth/realms/liquid-dev
   cloud:
     gateway:
       routes:
+      - id: liquid
+        uri: http://localhost:8020
+        predicates:
+        - Path=/quotes/**
       - id: auth
         uri: lb://auth
         predicates:

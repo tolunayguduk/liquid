@@ -12,6 +12,9 @@
 				{
 					"name": "token",
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -130,13 +133,24 @@
 			"item": [
 				{
 					"name": "hello",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJpNGpKbEtZamJPa1FiZGVjWDhyeWpyZ3RQaW8xaDRfLWtPaV95dWlGUUFvIn0.eyJleHAiOjE3MDIwODE0OTYsImlhdCI6MTcwMjA4MTE5NiwianRpIjoiN2U3ZjU4OWUtM2Y2Zi00ZmM1LTgxZjYtZDg4YTUzNDBjYjViIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDIwL2F1dGgvcmVhbG1zL2xpcXVpZC1kZXYiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiNWE3OWFmMjYtN2VkYy00MWRiLWE2ZDQtNzYxZDBiMDc1ZDhlIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoibGlxdWlkLWNsaWVudCIsInNlc3Npb25fc3RhdGUiOiJkZDQ2OGMxYy05OTEwLTQ1ODUtYWJlZS1jNjQ1MGFmOGZjNjUiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbIioiXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbImRlZmF1bHQtcm9sZXMtbGlxdWlkLWRldiIsIm9mZmxpbmVfYWNjZXNzIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJzaWQiOiJkZDQ2OGMxYy05OTEwLTQ1ODUtYWJlZS1jNjQ1MGFmOGZjNjUiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsIm5hbWUiOiJUb2x1bmF5IEfDvGTDvGsiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJ0b2x1bmF5Z3VkdWsiLCJnaXZlbl9uYW1lIjoiVG9sdW5heSIsImZhbWlseV9uYW1lIjoiR8O8ZMO8ayIsImVtYWlsIjoiZ3VkdWt0b2x1bmF5QGdtYWlsLmNvbSJ9.A3cM4mdAcbLfjDyNIU02gbyi4lwZXjmfARVGI_GqMe758fjzsLxkrbaduafhAKzmc2d3uF3PAuiaMkpVltZIU2qsmQTXf95ILClDxgtlumwiaxrXMxBKl19KaI-ona_-aHVQ_H8cZ-X6q3iQSn3ZKg1c09HDKkaFE2Ae42WAqPtMGoG8K-mrmVENr97RQS9ZVUNuOINoqqwtZu3xv4VJVvqPljvqSj-d9czTp-aY7WSXOk1hGZZK17fhFXKVuZuHW7UzQGgnedyK9CKuG2za_2755xJnz4tohVRM6Q63_Ae27nM6EeuVkpwTYwlXLaUeGAKhDPVa7etoDt-xRcodbw",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJpNGpKbEtZamJPa1FiZGVjWDhyeWpyZ3RQaW8xaDRfLWtPaV95dWlGUUFvIn0.eyJleHAiOjE3MDI1ODU4MzgsImlhdCI6MTcwMjU4NTUzOCwianRpIjoiOWExNjIwY2QtNzExNC00YzYxLTg0YTYtM2JjZDdmMzM4NmIyIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDIwL2F1dGgvcmVhbG1zL2xpcXVpZC1kZXYiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiNWE3OWFmMjYtN2VkYy00MWRiLWE2ZDQtNzYxZDBiMDc1ZDhlIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoibGlxdWlkLWNsaWVudCIsInNlc3Npb25fc3RhdGUiOiJjZGEwOGM3OC0xMTMzLTQyMDUtODk5OC04OTM1YmE0OWM0NjciLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbIioiXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbImRlZmF1bHQtcm9sZXMtbGlxdWlkLWRldiIsIm9mZmxpbmVfYWNjZXNzIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6Im9wZW5pZCBlbWFpbCBwcm9maWxlIiwic2lkIjoiY2RhMDhjNzgtMTEzMy00MjA1LTg5OTgtODkzNWJhNDljNDY3IiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJuYW1lIjoiVG9sdW5heSBHw7xkw7xrIiwicHJlZmVycmVkX3VzZXJuYW1lIjoidG9sdW5heWd1ZHVrIiwiZ2l2ZW5fbmFtZSI6IlRvbHVuYXkiLCJmYW1pbHlfbmFtZSI6IkfDvGTDvGsiLCJlbWFpbCI6Imd1ZHVrdG9sdW5heUBnbWFpbC5jb20ifQ.CSOgzrBIoFvC1vpI2hV8kyjgXoYdUljMK81T2u8xSII-IfDkFUWSm3PEm2rDQfiQFUiGIpFU_D0PwpZxzVl984m0fyxgsw16Xp-wquNWTgjc21Wi5asjg2XDrlTbhd6pxlXgoXcXCahhm_EyW3Q4M1LvwgJ5EE_PAYBNQeGirjvOaCY421YqNIUAiiPDvPYrid1aZoKF2Gzgoejao_UDtLiHpLjG3C2qhwft5BZEdX_-ZC1RKaeeYfknMHq6Ll0CH2mJpyew1xqYEieCC6tKUdY5RRXPeJ_TbFXEkxSPbGBNFkdUCpnfx0FnYf1sEQRxIkoK3DK0Ubkz7XEPeEvT_w",
 									"type": "string"
 								}
 							]
@@ -353,71 +367,6 @@
 			]
 		}
 	],
-	"auth": {
-		"type": "oauth2",
-		"oauth2": [
-			{
-				"key": "accessTokenUrl",
-				"value": "http://localhost:8020/auth/realms/liquid-keycloak/protocol/openid-connect/token",
-				"type": "string"
-			},
-			{
-				"key": "clientSecret",
-				"value": "BEUplQ0IBCcxLCk3AMmsq5jwZN5yNZnH",
-				"type": "string"
-			},
-			{
-				"key": "clientId",
-				"value": "liquid-keycloak",
-				"type": "string"
-			},
-			{
-				"key": "headerPrefix",
-				"value": "Bearer",
-				"type": "string"
-			},
-			{
-				"key": "refreshRequestParams",
-				"value": [],
-				"type": "any"
-			},
-			{
-				"key": "tokenRequestParams",
-				"value": [],
-				"type": "any"
-			},
-			{
-				"key": "authRequestParams",
-				"value": [],
-				"type": "any"
-			},
-			{
-				"key": "tokenName",
-				"value": "new-app-token",
-				"type": "string"
-			},
-			{
-				"key": "challengeAlgorithm",
-				"value": "S256",
-				"type": "string"
-			},
-			{
-				"key": "grant_type",
-				"value": "client_credentials",
-				"type": "string"
-			},
-			{
-				"key": "addTokenTo",
-				"value": "header",
-				"type": "string"
-			},
-			{
-				"key": "client_authentication",
-				"value": "header",
-				"type": "string"
-			}
-		]
-	},
 	"event": [
 		{
 			"listen": "prerequest",
