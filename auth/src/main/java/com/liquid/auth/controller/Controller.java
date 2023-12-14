@@ -21,6 +21,11 @@ public class Controller {
         return new ResponseEntity<>(service.login(credential.getUsername(), credential.getPassword()), HttpStatus.OK);
     }
 
+    @PostMapping("/refresh")
+    public ResponseEntity<?> refresh(@RequestBody TokenDto token) {
+        return new ResponseEntity<>(service.refresh(token), HttpStatus.OK);
+    }
+
     @PostMapping("/logout")
     public ResponseEntity<?> logout(@RequestBody TokenDto token) {
         return new ResponseEntity<>(service.logout(token), HttpStatus.OK);

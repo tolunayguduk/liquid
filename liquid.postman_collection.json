@@ -38,45 +38,29 @@
 					"response": []
 				},
 				{
-					"name": "refresh_token",
+					"name": "refresh",
 					"request": {
 						"method": "POST",
-						"header": [
-							{
-								"key": "client_id",
-								"value": "liquid-client",
-								"type": "text"
-							},
-							{
-								"key": "client_secret",
-								"value": "x6duQXvCooKAErTPMs8re9kDPeDo7gp9",
-								"type": "text"
-							},
-							{
-								"key": "grant_type",
-								"value": "refresh_token",
-								"type": "text"
-							},
-							{
-								"key": "refresh_token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJiNGJmNWJhZS0xMGYyLTRiY2UtOWRlMi1jY2M3NDJiNzg3YmQifQ.eyJleHAiOjE3MDIwNzY5MzYsImlhdCI6MTcwMjA3NTEzNiwianRpIjoiNTYyMDU4NmUtMjA1Yi00NTMxLTgzODgtNDVjODA5NDVlZWNkIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDIwL2F1dGgvcmVhbG1zL2xpcXVpZC1kZXYiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjgwMjAvYXV0aC9yZWFsbXMvbGlxdWlkLWRldiIsInN1YiI6IjVhNzlhZjI2LTdlZGMtNDFkYi1hNmQ0LTc2MWQwYjA3NWQ4ZSIsInR5cCI6IlJlZnJlc2giLCJhenAiOiJsaXF1aWQtY2xpZW50Iiwic2Vzc2lvbl9zdGF0ZSI6Ijc4YjBjOTY5LWY1OTAtNDBmNi04ZjIxLWEyNmEwZjYzMGI5NyIsInNjb3BlIjoiZW1haWwgcHJvZmlsZSIsInNpZCI6Ijc4YjBjOTY5LWY1OTAtNDBmNi04ZjIxLWEyNmEwZjYzMGI5NyJ9.Q_Ch-yA2udApEEztP0qZUTnZsZI5GPxrvPxG1NHAYOo",
-								"type": "text"
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refresh_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJiNGJmNWJhZS0xMGYyLTRiY2UtOWRlMi1jY2M3NDJiNzg3YmQifQ.eyJleHAiOjE3MDI1NzI0ODgsImlhdCI6MTcwMjU3MDY4OCwianRpIjoiMzY2OTVkYTctNTM0OC00NWY4LWIwOGItZTUyNjc4MWZkNDk0IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDIwL2F1dGgvcmVhbG1zL2xpcXVpZC1kZXYiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjgwMjAvYXV0aC9yZWFsbXMvbGlxdWlkLWRldiIsInN1YiI6IjVhNzlhZjI2LTdlZGMtNDFkYi1hNmQ0LTc2MWQwYjA3NWQ4ZSIsInR5cCI6IlJlZnJlc2giLCJhenAiOiJsaXF1aWQtY2xpZW50Iiwic2Vzc2lvbl9zdGF0ZSI6ImYxYjI2ODJkLWE0NmUtNGI2NC04N2VlLWQ4MjMzMjU5NDEzYSIsInNjb3BlIjoib3BlbmlkIGVtYWlsIHByb2ZpbGUiLCJzaWQiOiJmMWIyNjgyZC1hNDZlLTRiNjQtODdlZS1kODIzMzI1OTQxM2EifQ.5mKWNmB2nY_PzUGxUJfJl5omHnJd9Wsh182YZ3xj8-A\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
 							}
-						],
+						},
 						"url": {
-							"raw": "http://localhost:8020/auth/realms/liquid-dev/protocol/openid-connect/token",
+							"raw": "http://localhost:8000/auth/refresh",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8020",
+							"port": "8000",
 							"path": [
 								"auth",
-								"realms",
-								"liquid-dev",
-								"protocol",
-								"openid-connect",
-								"token"
+								"refresh"
 							]
 						}
 					},

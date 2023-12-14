@@ -32,6 +32,11 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
+    public Object refresh(TokenDto token) {
+        return keyCloakClient.refresh(new KeyCloakRequest(client_id, client_secret, "refresh_token", null, null, null, null, token.getRefresh_token(), null, null));
+    }
+
+    @Override
     public Object logout(TokenDto token) {
         return keyCloakClient.terminate(new KeyCloakRequest(client_id, client_secret, null, null, null, null, null, token.getRefresh_token(), null, null));
 
