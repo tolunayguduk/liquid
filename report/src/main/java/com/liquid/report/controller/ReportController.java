@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.liquid.report.service.UserService;
-import com.liquid.util.common.GeneralParameterService;
 import com.liquid.util.common.SystemParameterService;
+
+import java.security.Principal;
 
 @RestController
 @RequestMapping("/")
@@ -19,8 +20,8 @@ public class ReportController {
 	private UserService userService;
 
 	@GetMapping("/hello")
-	public ResponseEntity<?> hello() {
-		return new ResponseEntity<>("hello", HttpStatus.OK);
+	public ResponseEntity<?> hello(Principal principal) {
+		return new ResponseEntity<>("hello " + principal.getName(), HttpStatus.OK);
 	}
 
 	@GetMapping("/")
