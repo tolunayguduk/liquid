@@ -8,6 +8,9 @@ spring:
     name: auth
   security:
     oauth2:
+      resource-server:
+        jwt:
+          jwk-set-uri: http://localhost:8020/auth/realms/liquid-dev/protocol/openid-connect/certs
       client:
         provider:
           liquid-provider:
