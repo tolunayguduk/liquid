@@ -6,6 +6,8 @@ import com.liquid.auth.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -20,6 +22,11 @@ public class Controller {
     public ResponseEntity<?> login(@RequestBody CredentialDto credential) {
         return new ResponseEntity<>(service.login(credential.getUsername(), credential.getPassword()), HttpStatus.OK);
     }
+    
+    @PostMapping("/introspect")
+    public ResponseEntity<?> introspect(@AuthenticationPrincipal Jwt jwt) {
+        return new ResponseEntity<>(service.introspect(jwt), HttpStatus.OK);
+    }
 
     @PostMapping("/refresh")
     public ResponseEntity<?> refresh(@RequestBody TokenDto token) {
@@ -29,10 +36,5 @@ public class Controller {
     @PostMapping("/logout")
     public ResponseEntity<?> logout(@RequestBody TokenDto token) {
         return new ResponseEntity<>(service.logout(token), HttpStatus.OK);
-    }
-
-    @PostMapping("/introspect")
-    public ResponseEntity<?> introspect(@RequestBody TokenDto token) {
-        return new ResponseEntity<>(service.introspect(token), HttpStatus.OK);
     }
 }
