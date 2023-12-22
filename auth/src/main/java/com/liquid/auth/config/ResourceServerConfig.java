@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 
@@ -19,13 +20,26 @@ public class ResourceServerConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
         http
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
                 .authorizeRequests()
-                .antMatchers("**/login/**").permitAll()
-                .anyRequest().authenticated()// OR .access("authenticated AND hasRole('product_read')")
+                .antMatchers("/login").permitAll()
+                .and()
+                // require authorization for everything else
+                .authorizeRequests()
+                .anyRequest().authenticated()
                 .and()
                 .oauth2ResourceServer()
-                .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter()));
+                .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter()))
+                .and()
+                .x509()
+                .subjectPrincipalRegex("CN=(.*?)(?:,|$)")
+                .userDetailsService(userDetailsService())
+                .and()
+                .csrf().disable();
     }
 
     private Converter<Jwt, ? extends AbstractAuthenticationToken> jwtAuthenticationConverter() {
