@@ -22,7 +22,7 @@ public class Controller {
     public ResponseEntity<?> login(@RequestBody CredentialDto credential) {
         return new ResponseEntity<>(service.login(credential.getUsername(), credential.getPassword()), HttpStatus.OK);
     }
-    
+
     @PostMapping("/introspect")
     public ResponseEntity<?> introspect(@AuthenticationPrincipal Jwt jwt) {
         return new ResponseEntity<>(service.introspect(jwt), HttpStatus.OK);
