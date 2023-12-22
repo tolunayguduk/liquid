@@ -3,6 +3,8 @@ package com.liquid.report.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,6 +23,9 @@ public class ReportController {
 
 	@GetMapping("/hello")
 	public ResponseEntity<?> hello(Principal principal) {
+
+		SecurityContext securityContext = SecurityContextHolder.getContext();
+
 		return new ResponseEntity<>("hello " + principal.getName(), HttpStatus.OK);
 	}
 

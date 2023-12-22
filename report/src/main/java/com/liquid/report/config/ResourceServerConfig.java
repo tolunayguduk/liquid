@@ -24,7 +24,13 @@ public class ResourceServerConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated() // OR .access("authenticated AND hasRole('product_read')")
                 .and()
                 .oauth2ResourceServer()
-                .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter()));
+                .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter()))
+                .and()
+                .x509()
+                .subjectPrincipalRegex("CN=(.*?)(?:,|$)")
+                .userDetailsService(userDetailsService())
+                .and()
+                .csrf().disable();
     }
 
     private Converter<Jwt, ? extends AbstractAuthenticationToken> jwtAuthenticationConverter() {
