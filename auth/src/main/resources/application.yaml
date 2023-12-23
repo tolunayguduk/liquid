@@ -20,7 +20,7 @@ spring:
             provider: liquid-provider
             scope: openid
             client-id: liquid-client
-            client-secret: x6duQXvCooKAErTPMs8re9kDPeDo7gp9
+            client-secret: LZJMHqziVZ17Ack1m4ZOAOO4unU1cq7S
             authorization-grant-type: password
 
 eureka:

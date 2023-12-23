@@ -18,6 +18,15 @@ spring:
           issuer-uri: http://localhost:8020/auth/realms/liquid-dev
   cloud:
     gateway:
+      global-cors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - DELETE
+              - OPTIONS
       default-filters:
         - TokenRelay
       routes:

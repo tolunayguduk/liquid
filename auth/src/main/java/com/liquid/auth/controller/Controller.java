@@ -23,7 +23,7 @@ public class Controller {
         return new ResponseEntity<>(service.login(credential.getUsername(), credential.getPassword()), HttpStatus.OK);
     }
 
-    @PostMapping("/introspect")
+    @GetMapping("/introspect")
     public ResponseEntity<?> introspect(@AuthenticationPrincipal Jwt jwt) {
         return new ResponseEntity<>(service.introspect(jwt), HttpStatus.OK);
     }
