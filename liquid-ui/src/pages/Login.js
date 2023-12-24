@@ -5,6 +5,7 @@ const Login = (props) => {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState(false);
 
     useEffect(() => {
         if (localStorage.getItem('user')) {
@@ -29,12 +30,26 @@ const Login = (props) => {
             });
         }).catch((err) => {
             console.log(err);
+            setError(true);
         });
     }
 
     return (
         <div className='container-xxl p-3'>
             <form className="needs-validation" onSubmit={onSubmit}>
+                {error ?
+                    (
+                        <div className="form-row">
+                            <div className="col-md-4 mb-3">
+                                <div class="alert alert-danger p-1 m-0" role="alert">
+                                    <p>Kullanıcı adı ya da parola hatalı</p>
+                                </div>
+                            </div>
+                        </div>
+                    ) : (
+                        <div></div>
+                    )
+                }
                 <div className="form-row">
                     <div className="col-md-4 mb-3">
                         <label>Username</label>

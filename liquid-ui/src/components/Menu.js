@@ -26,10 +26,10 @@ const Menu = (props) => {
                     <Navbar.Toggle />
                     <Navbar.Collapse className="justify-content-end">
                         <Navbar.Text>
-                            {localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).username : ''}
+                            <a href='/profile'>{localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).username : ''}</a>
                         </Navbar.Text>
                         <Navbar.Text>
-                        {(localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')).access_token: false) ?
+                            {(localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')).access_token : false) ?
                                 (
                                     <button type="button" className="btn btn-default btn-sm" onClick={() => { onLogout() }}>
                                         <span className="glyphicon glyphicon-log-out"></span> Log out
@@ -43,7 +43,7 @@ const Menu = (props) => {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-            {(localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')).access_token: false) ?
+            {(localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')).access_token : false) ?
                 (
                     <Offcanvas show={show} onHide={handleClose} >
                         <Offcanvas.Header closeButton>
