@@ -1,0 +1,29 @@
+CREATE TABLE `revision` (
+  `REV` int(20) NOT NULL AUTO_INCREMENT,
+  `REVTSTMP` bigint(20) NOT NULL,
+  PRIMARY KEY (`REV`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin5 COMMENT='Historik versiyon bilgisini tutar';
+
+create table liquid.CATAGORY (
+	`ID` bigint(20) unsigned not null auto_increment,
+	NAME varchar(100) null,
+	OWNER varchar(100) null,
+	CREATE_DATE DATETIME null,
+	CREATED_BY varchar(100) null,
+	UPDATE_DATE DATE null,
+	UPDATED_BY varchar(100) null,
+	primary key (`ID`)
+)engine = InnoDB auto_increment = 4 default CHARSET = latin5 COMMENT = 'Ürün kategori bilgisini tutar';
+
+create table liquid.CATAGORY_AUDIT (
+	`ID` bigint(20) unsigned not null,
+	`REV` bigint(20) unsigned not null auto_increment,
+	`REVTYPE` int(11) DEFAULT NULL,
+	NAME varchar(100) null,
+	OWNER varchar(100) null,
+	CREATE_DATE DATETIME null,
+	CREATED_BY varchar(100) null,
+	UPDATE_DATE DATE null,
+	UPDATED_BY varchar(100) null,
+	primary key (`REV`)
+)engine = InnoDB auto_increment = 4 default CHARSET = latin5 COMMENT = 'Ürün kategori tarihçe bilgisini tutar';

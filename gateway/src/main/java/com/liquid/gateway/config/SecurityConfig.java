@@ -14,7 +14,13 @@ public class SecurityConfig {
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity serverHttpSecurity) {
         return serverHttpSecurity.csrf(ServerHttpSecurity.CsrfSpec::disable)
-                .authorizeExchange(exchange -> exchange.pathMatchers("/eureka/**", "/auth/**")
+                .authorizeExchange(exchange -> exchange.pathMatchers("/eureka/**", "/auth/**",
+                                "/product/v2/api-docs",
+                                "/product/configuration/ui",
+                                "/product/swagger-resources/**",
+                                "/product/configuration/security",
+                                "/product/swagger-ui.html",
+                                "/product/webjars/**")
                         .permitAll()
                         .anyExchange().authenticated()
                 ).oauth2ResourceServer((oauth) -> oauth

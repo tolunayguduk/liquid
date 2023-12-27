@@ -50,3 +50,7 @@ spring:
         uri: lb://notification
         predicates:
         - Path=/notification/**
+      - id: product
+        uri: lb://product
+        predicates:
+          - Path=/product/**

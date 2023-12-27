@@ -1,16 +1,15 @@
 server:
   port: 0
   servlet:
-    context-path: /user
+    context-path: /product
 
 spring:
   application:
-    name: user
+    name: product
   datasource:
-    url: jdbc:mysql://localhost:3306/myth?useUnicode=true&useLegacyDatetimeCode=false&serverTimezone=Turkey
+    url: jdbc:mysql://localhost:3306/liquid?useUnicode=true&useLegacyDatetimeCode=false&serverTimezone=Turkey
     username: root
     password:
-    driver-class: com.mysql.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: none
@@ -18,6 +17,11 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL57Dialect
+  security:
+    oauth2:
+      resource-server:
+        jwt:
+          jwk-set-uri: http://localhost:8020/auth/realms/liquid-dev/protocol/openid-connect/certs
 
 eureka:
   instance:

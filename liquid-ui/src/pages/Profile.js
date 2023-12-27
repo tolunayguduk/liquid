@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Post from '../components/Post';
+import Dashboard from './Dashboard';
 
 const Profile = (props) => {
 
@@ -24,7 +25,9 @@ const Profile = (props) => {
                         <div className="card">
                             <div className="card-body">
                                 <div className="d-flex flex-column align-items-center text-center">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width="150" />
+                                    <a href="/profile">
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width="150" />
+                                    </a>
                                     <div className="mt-3">
                                         <h4>{user.name}</h4>
                                         <p className="text-secondary mb-1">{user.username}</p>
@@ -35,9 +38,9 @@ const Profile = (props) => {
                         </div>
                     </div>
                     <div className="col-md-8">
-                        <Post user={user} />
-                        <Post user={user} />
-                        <Post user={user} />
+
+
+                        <Dashboard />
                         <Post user={user} />
                     </div>
                 </div>

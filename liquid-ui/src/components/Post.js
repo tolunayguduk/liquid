@@ -30,19 +30,21 @@ const Post = (props) => {
     }
 
     return (
-        <div className="card w-75 mb-2">
+        <div className="card w-100 mb-2">
             <div className="card-body">
 
                 <div className='row'>
                     <div className='col-1'>
-                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle border border-secondary p-1" width="35" />
+                        <a href="/profile">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle border border-secondary p-1" width="35" />
+                        </a>
                     </div>
                     <div className='col-11'>
                         <div className='row'>
-                            <div className='col-9'>
+                            <div className='col-10'>
                                 <span><strong>{props.user.name}</strong></span>
                             </div>
-                            <div className='col-3'>
+                            <div className='col-2'>
                                 <small>05.11.1995 13:12</small>
                             </div>
                         </div>
@@ -50,11 +52,11 @@ const Post = (props) => {
                             <p className="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
                         </div>
                         <div className='row mt-3'>
-                            <div className='col-3'>
+                            <div className='col-2'>
                                 <i className="bi bi-chat m-2"></i>
                                 {comment.count}
                             </div>
-                            <div className='col-3'>
+                            <div className='col-2'>
                                 <div className='dislike' onClick={() => { handleDislike() }}>
                                     {dislike.status ?
                                         (
@@ -66,7 +68,7 @@ const Post = (props) => {
                                     {dislike.count ? -dislike.count : dislike.count}
                                 </div>
                             </div>
-                            <div className='col-3'>
+                            <div className='col-2'>
                                 <div className='like' onClick={() => { handleLike() }}>
                                     {like.status ?
                                         (
@@ -78,7 +80,7 @@ const Post = (props) => {
                                     {like.count}
                                 </div>
                             </div>
-                            <div className='col-3'>
+                            <div className='col-6'>
                                 <i className="bi bi-bullseye"></i>
                             </div>
                         </div>
