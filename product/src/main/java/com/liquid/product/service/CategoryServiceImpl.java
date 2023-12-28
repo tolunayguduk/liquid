@@ -36,9 +36,6 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public CategoryEntity create(CategoryEntity entity, Jwt jwt) throws CustomException {
         entity.setOwner(jwt.getClaimAsString("preferred_username"));
-        entity.setStatus(true);
-        //entity.setCreatedBy(jwt.getClaimAsString("preferred_username"));
-        //entity.setCreateDate(LocalDateTime.now());
         return categoryRepository.save(entity);
     }
 
@@ -49,9 +46,6 @@ public class CategoryServiceImpl implements CategoryService {
             throw Exception.PARAMETER_NOT_FOUND.raise();
         }
         category.get().setName(entity.getName());
-        category.get().setStatus(true);
-        //category.get().setUpdatedBy(jwt.getClaimAsString("preferred_username"));
-        //category.get().setCreateDate(LocalDateTime.now());
         return categoryRepository.save(category.get());
     }
 

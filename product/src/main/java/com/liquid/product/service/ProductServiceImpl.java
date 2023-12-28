@@ -40,11 +40,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductEntity create(ProductEntity entity, Jwt jwt) throws CustomException {
         entity.getCategory().setOwner(jwt.getClaimAsString("preferred_username"));
-        entity.getCategory().setStatus(true);
         entity.setOwner(jwt.getClaimAsString("preferred_username"));
-        entity.setStatus(true);
-        //entity.setCreatedBy(jwt.getClaimAsString("preferred_username"));
-        //entity.setCreateDate(LocalDateTime.now());
         return productRepository.save(entity);
     }
 
@@ -58,9 +54,6 @@ public class ProductServiceImpl implements ProductService {
         product.get().setCategory(categoryRepository.findOneById(entity.getCategoryId()).orElseThrow(()-> Exception.PARAMETER_NOT_FOUND.raise()));
         product.get().setPrice(entity.getPrice());
         product.get().setImageLink(entity.getImageLink());
-        product.get().setStatus(true);
-        //product.get().setUpdatedBy(jwt.getClaimAsString("preferred_username"));
-        //product.get().setUpdateDate(LocalDateTime.now());
         return productRepository.save(product.get());
     }
 
