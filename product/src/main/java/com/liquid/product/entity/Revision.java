@@ -14,7 +14,6 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Revision {
-
 	@Id
 	@Column(name = "REV")
 	@RevisionNumber

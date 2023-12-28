@@ -1,7 +1,7 @@
 package com.liquid.product.controller;
 
-import com.liquid.product.dto.CatagoryDto;
-import com.liquid.product.entity.CatagoryEntity;
+import com.liquid.product.dto.CategoryDto;
+import com.liquid.product.entity.CategoryEntity;
 import com.liquid.product.mapper.CategoryMapper;
 import com.liquid.product.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/catagory")
+@RequestMapping("/category")
 public class CategoryController {
 
 	@Autowired
@@ -25,19 +25,19 @@ public class CategoryController {
 
 	@GetMapping("/retrieve")
 	public ResponseEntity<?> retreve(@AuthenticationPrincipal Jwt jwt) {
-		List<CatagoryEntity> entities = categoryService.retrieve(jwt);
+		List<CategoryEntity> entities = categoryService.retrieve(jwt);
 		return new ResponseEntity<>(categoryMapper.toDto(entities), HttpStatus.OK);
 	}
 
 	@PostMapping("/create")
-	public ResponseEntity<?> create(@RequestBody CatagoryDto dto, @AuthenticationPrincipal Jwt jwt) {
-		CatagoryEntity entity = categoryService.create(categoryMapper.toEntity(dto), jwt);
+	public ResponseEntity<?> create(@RequestBody CategoryDto dto, @AuthenticationPrincipal Jwt jwt) {
+		CategoryEntity entity = categoryService.create(categoryMapper.toEntity(dto), jwt);
 		return new ResponseEntity<>(categoryMapper.toDto(entity), HttpStatus.OK);
 	}
 
 	@PutMapping("/update/{id}")
-	public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody CatagoryDto dto, @AuthenticationPrincipal Jwt jwt) {
-		CatagoryEntity entity = categoryService.update(id, categoryMapper.toEntity(dto), jwt);
+	public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody CategoryDto dto, @AuthenticationPrincipal Jwt jwt) {
+		CategoryEntity entity = categoryService.update(id, categoryMapper.toEntity(dto), jwt);
 		return new ResponseEntity<>(categoryMapper.toDto(entity), HttpStatus.OK);
 	}
 
