@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import { QRCode, Space } from 'antd';
 
 const Menu = (props) => {
 
@@ -14,6 +15,10 @@ const Menu = (props) => {
         localStorage.removeItem("token");
         localStorage.removeItem("user");
         window.location.href = "/";
+    }
+
+    const printQR = (e) => {
+        //window.print();
     }
 
     return (
@@ -50,7 +55,11 @@ const Menu = (props) => {
                             <Offcanvas.Title><i className="bi bi-bullseye"></i> {localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).username : ''}</Offcanvas.Title>
                         </Offcanvas.Header>
                         <Offcanvas.Body>
-                            Welcome to Liquid UI
+                            <div  className='row'>
+                                <Space onClick={(e) => { printQR(e) }} direction="vertical" align="center">
+                                    <QRCode id="qr" value={"tolunayguduk"} />
+                                </Space>
+                            </div>
                         </Offcanvas.Body>
                     </Offcanvas>
                 ) :

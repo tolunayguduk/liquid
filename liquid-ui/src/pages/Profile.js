@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Post from '../components/Post';
-import Dashboard from './Dashboard';
+import DashboardHeader from './DashboardHeader';
+import DashboardBody from './DashboardBody';
 
 const Profile = (props) => {
 
@@ -38,12 +38,10 @@ const Profile = (props) => {
                         </div>
                     </div>
                     <div className="col-md-8">
-
-
-                        <Dashboard />
-                        <Post user={user} />
+                        <DashboardHeader />
                     </div>
                 </div>
+                <DashboardBody />
             </div>
         </div>
     );
