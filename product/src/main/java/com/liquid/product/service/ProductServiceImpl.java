@@ -8,6 +8,7 @@ import com.liquid.util.exception.Exception;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -38,26 +39,30 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional
     public ProductEntity create(ProductEntity entity, Jwt jwt) throws CustomException {
-        entity.getCategory().setOwner(jwt.getClaimAsString("preferred_username"));
+        //TODO: varolmayan bir categori ile çağırılırsa ne olamlı?
+        //entity.getCategory().setOwner(jwt.getClaimAsString("preferred_username"));
         entity.setOwner(jwt.getClaimAsString("preferred_username"));
         return productRepository.save(entity);
     }
 
     @Override
+    @Transactional
     public ProductEntity update(Long id, ProductEntity entity, Jwt jwt) throws CustomException {
         Optional<ProductEntity> product = productRepository.findOneById(id);
         if(!product.orElseThrow(()-> Exception.PARAMETER_NOT_FOUND.raise()).getOwner().equals(jwt.getClaimAsString("preferred_username"))){
             throw Exception.PARAMETER_NOT_FOUND.raise();
         }
         product.get().setName(entity.getName());
-        product.get().setCategory(categoryRepository.findOneById(entity.getCategoryId()).orElseThrow(()-> Exception.PARAMETER_NOT_FOUND.raise()));
+        product.get().setCategoryId(entity.getCategoryId());
         product.get().setPrice(entity.getPrice());
         product.get().setImageLink(entity.getImageLink());
         return productRepository.save(product.get());
     }
 
     @Override
+    @Transactional
     public void delete(Long id, Jwt jwt) throws CustomException {
         Optional<ProductEntity> product = productRepository.findOneById(id);
         if(!product.orElseThrow(()-> Exception.PARAMETER_NOT_FOUND.raise()).getOwner().equals(jwt.getClaimAsString("preferred_username"))){

@@ -1,7 +1,51 @@
-import React from 'react';
-import { Descriptions, Card, Col, Row } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { Descriptions, Card, Col, Row, Modal } from 'antd';
+import CategoryModal from '../components/CategoryModal';
+import ProductsModal from '../components/ProductsModal';
+import axios from 'axios';
 
 const DashboardHeader = (props) => {
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [modalType, setModalType] = useState("");
+
+    const [productData, setProductData] = useState([]);
+    const [categoryData, setCategoryData] = useState([]);
+
+
+    useEffect(() => {
+        getCategories();
+        getProducts();
+    }, []);
+
+    const showModal = (type) => {
+        setIsModalOpen(true);
+        setModalType(type)
+    };
+
+    const handleOk = () => {
+        setIsModalOpen(false);
+    };
+
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    };
+
+    const getCategories = () => {
+        axios.get('/product/category/retrieve').then((res) => {
+            setCategoryData(res.data);
+        }).catch(() => {
+
+        });
+    }
+
+    const getProducts = () => {
+        axios.get('/product/product/retrieve').then((res) => {
+            setProductData(res.data);
+        }).catch(() => {
+
+        });
+    }
 
     const items = [
         {
@@ -17,13 +61,13 @@ const DashboardHeader = (props) => {
                 <div className='col-12'>
                     <Row gutter={16}>
                         <Col span={8}>
-                            <Card title="Categories" bordered={false}>
-                                <h4>23</h4>category
+                            <Card title="Categories" bordered={false} onClick={() => showModal("Categories")}>
+                                <h4>{categoryData.length}</h4>Click to Manage Categories
                             </Card>
                         </Col>
                         <Col span={8}>
-                            <Card title="Products" bordered={false}>
-                                <h4>412</h4>product
+                            <Card title="Products" bordered={false} onClick={() => showModal("Products")}>
+                                <h4>{productData.length}</h4>Click to Manage Products
                             </Card>
                         </Col>
                         <Col span={8}>
@@ -36,9 +80,21 @@ const DashboardHeader = (props) => {
             </div>
             <div className='row'>
                 <div className='col-12 p-4'>
-                    <Descriptions title="" items={items} />
+                    <Descriptions items={items} />
                 </div>
             </div>
+            <Modal title={"Manage " + modalType}
+                open={isModalOpen}
+                onOk={handleOk}
+                onCancel={handleCancel}
+                width={"80%"}>
+                {modalType === "Categories" &&
+                    <CategoryModal categoryData={categoryData} refreshCategories={() => getCategories()} />
+                }
+                {modalType === "Products" &&
+                    <ProductsModal productData={productData} refreshProducts={() => getProducts()} />
+                }
+            </Modal>
         </div>
     );
 }

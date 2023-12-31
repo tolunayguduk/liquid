@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.jwt.Jwt;
 
 import javax.persistence.*;
@@ -40,23 +40,46 @@ public abstract class BaseEntity implements Serializable {
 
     @PrePersist
     protected void prePersist() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof Jwt) {
+            if (this.createdBy == null) createdBy = ((Jwt)principal).getClaimAsString("preferred_username");
+        } else {
+            if (this.createdBy == null) createdBy = principal.toString();
+        }
         if (this.createDate == null) createDate = LocalDateTime.now();
-        if (this.createdBy == null) createdBy = "creator";
     }
 
     @PreUpdate
     protected void preUpdate() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (this.createDate == null) createDate = LocalDateTime.now();
-        if (this.createdBy == null) createdBy = "creator";
+        if (principal instanceof Jwt) {
+            if (this.createdBy == null) createdBy = ((Jwt)principal).getClaimAsString("preferred_username");
+        } else {
+            if (this.createdBy == null) createdBy = principal.toString();
+        }
         this.updateDate = LocalDateTime.now();
-        this.updatedBy = "updater";
+        if (principal instanceof Jwt) {
+            this.updatedBy = ((Jwt)principal).getClaimAsString("preferred_username");
+        } else {
+            this.updatedBy = principal.toString();
+        }
     }
 
     @PreRemove
     protected void preRemove() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (this.createDate == null) createDate = LocalDateTime.now();
-        if (this.createdBy == null) createdBy = "creator";
+        if (principal instanceof Jwt) {
+            if (this.createdBy == null) createdBy = ((Jwt)principal).getClaimAsString("preferred_username");
+        } else {
+            if (this.createdBy == null) createdBy = principal.toString();
+        }
         this.updateDate = LocalDateTime.now();
-        this.updatedBy = "updater";
+        if (principal instanceof Jwt) {
+            this.updatedBy = ((Jwt)principal).getClaimAsString("preferred_username");
+        } else {
+            this.updatedBy = principal.toString();
+        }
     }
 }

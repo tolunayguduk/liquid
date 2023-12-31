@@ -1,18 +1,18 @@
-import { Tag } from 'antd';
-import { EditTwoTone } from '@ant-design/icons';
+import { Tag, Button, Divider, Flex } from 'antd';
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 
-export function categoryTableColumns() {
+export function categoryTableColumns(onEdit, onDelete) {
     return [{
         key: 0,
         title: 'Id',
         dataIndex: 'id',
-        width: '10%',
+        width: '10%'
     },
     {
         key: 1,
         title: 'Name',
         dataIndex: 'name',
-        width: '30%',
+        width: '70%'
     },
     {
         key: 2,
@@ -22,7 +22,7 @@ export function categoryTableColumns() {
             if (item === true) {
                 return <Tag color="success">{String(item ? "Active" : "Passive")}</Tag>
             } else {
-                return <Tag color="error">{String(item)}</Tag>
+                return <Tag color="error">{String(item ? "Active" : "Passive")}</Tag>
             }
         },
         filters: [
@@ -35,14 +35,27 @@ export function categoryTableColumns() {
                 value: false,
             }
         ],
-        filterMode: 'tree',
         filterSearch: true,
-        onFilter: (value, record) => record.name.includes(value),
+        onFilter: (value, record) => { return record.status === value },
         width: '10%',
+    },
+    {
+        key: 1,
+        title: 'Actions',
+        width: '10%',
+        render: (value, record) => {
+            return (
+                <Flex >
+                    <Button onClick={() => onEdit(value, record)} type="primary" icon={<EditOutlined />} />
+                    <Divider type="vertical" />
+                    <Button onClick={() => onDelete(value, record)} type="primary" icon={<DeleteOutlined />} danger />
+                </Flex>
+            );
+        }
     }];
 }
 
-export function productTableColumns() {
+export function productTableColumns(onEdit, onDelete) {
     return [{
         key: 0,
         title: 'Id',
@@ -72,7 +85,7 @@ export function productTableColumns() {
         key: 4,
         title: 'Image Link',
         dataIndex: 'imageLink',
-        width: '45%',
+        width: '40%',
     },
     {
         key: 5,
@@ -82,7 +95,7 @@ export function productTableColumns() {
             if (item === true) {
                 return <Tag color="success">{String(item ? "Active" : "Passive")}</Tag>
             } else {
-                return <Tag color="error">{String(item)}</Tag>
+                return <Tag color="error">{String(item ? "Active" : "Passive")}</Tag>
             }
         },
         filters: [
@@ -95,19 +108,22 @@ export function productTableColumns() {
                 value: false,
             }
         ],
-        filterMode: 'tree',
         filterSearch: true,
-        onFilter: (value, record) => record.name.includes(value),
+        onFilter: (value, record) => { return record.status === value },
         width: '10%',
     },
     {
-        title: '',
-        dataIndex: '',
-        width: '5%',
-        render: (record) => {
-            return (<div>
-                <EditTwoTone />
-            </div>);
-        },
+        key: 1,
+        title: 'Actions',
+        width: '10%',
+        render: (value, record) => {
+            return (
+                <Flex >
+                    <Button onClick={() => onEdit(value, record)} type="primary" icon={<EditOutlined />} />
+                    <Divider type="vertical" />
+                    <Button onClick={() => onDelete(value, record)} type="primary" icon={<DeleteOutlined />} danger />
+                </Flex>
+            );
+        }
     }];
 }
