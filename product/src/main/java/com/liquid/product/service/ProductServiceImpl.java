@@ -1,7 +1,7 @@
 package com.liquid.product.service;
 
+import com.liquid.product.entity.CategoryEntity;
 import com.liquid.product.entity.ProductEntity;
-import com.liquid.product.repository.CategoryRepository;
 import com.liquid.product.repository.ProductRepository;
 import com.liquid.util.exception.CustomException;
 import com.liquid.util.exception.Exception;
@@ -10,7 +10,6 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,7 +20,7 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
 
     @Autowired
-    private CategoryRepository categoryRepository;
+    private CategoryService categoryService;
 
     @Override
     public List<ProductEntity> list() {
@@ -30,19 +29,24 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductEntity find(Long id) throws CustomException {
-        return productRepository.findOneById(id).orElseThrow(()-> Exception.PARAMETER_NOT_FOUND.raise());
+        return productRepository.findOneById(id).orElseThrow(Exception.PARAMETER_NOT_FOUND::raise);
     }
 
     @Override
     public List<ProductEntity> retrieve(Jwt jwt) throws CustomException {
-        return productRepository.findByOwner(jwt.getClaimAsString("preferred_username")).orElseThrow(()->Exception.PARAMETER_NOT_FOUND.raise());
+        return productRepository.findByOwner(jwt.getClaimAsString("preferred_username")).orElseThrow(Exception.PARAMETER_NOT_FOUND::raise);
     }
 
     @Override
     @Transactional
     public ProductEntity create(ProductEntity entity, Jwt jwt) throws CustomException {
-        //TODO: varolmayan bir categori ile çağırılırsa ne olamlı?
-        //entity.getCategory().setOwner(jwt.getClaimAsString("preferred_username"));
+        if (entity.getCategory() == null){
+            CategoryEntity category = categoryService.find(entity.getCategoryId());
+            entity.setCategory(category);
+        }else{
+            //TODO:CHILD ID COuLDNT SAVE
+            entity.getCategory().setOwner(jwt.getClaimAsString("preferred_username"));
+        }
         entity.setOwner(jwt.getClaimAsString("preferred_username"));
         return productRepository.save(entity);
     }
@@ -51,7 +55,7 @@ public class ProductServiceImpl implements ProductService {
     @Transactional
     public ProductEntity update(Long id, ProductEntity entity, Jwt jwt) throws CustomException {
         Optional<ProductEntity> product = productRepository.findOneById(id);
-        if(!product.orElseThrow(()-> Exception.PARAMETER_NOT_FOUND.raise()).getOwner().equals(jwt.getClaimAsString("preferred_username"))){
+        if(!product.orElseThrow(Exception.PARAMETER_NOT_FOUND::raise).getOwner().equals(jwt.getClaimAsString("preferred_username"))){
             throw Exception.PARAMETER_NOT_FOUND.raise();
         }
         product.get().setName(entity.getName());
@@ -65,7 +69,7 @@ public class ProductServiceImpl implements ProductService {
     @Transactional
     public void delete(Long id, Jwt jwt) throws CustomException {
         Optional<ProductEntity> product = productRepository.findOneById(id);
-        if(!product.orElseThrow(()-> Exception.PARAMETER_NOT_FOUND.raise()).getOwner().equals(jwt.getClaimAsString("preferred_username"))){
+        if(!product.orElseThrow(Exception.PARAMETER_NOT_FOUND::raise).getOwner().equals(jwt.getClaimAsString("preferred_username"))){
             throw Exception.PARAMETER_NOT_FOUND.raise();
         }
         productRepository.deleteOneById(id);

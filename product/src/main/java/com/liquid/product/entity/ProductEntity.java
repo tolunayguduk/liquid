@@ -26,11 +26,11 @@ public class ProductEntity extends BaseEntity {
     @Column(name = "NAME")
     private String name;
 
-    @Column(name = "CATEGORY_ID", insertable = false, updatable = false)
+    @Column(name = "CATEGORY_ID")
     private Long categoryId;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "CATEGORY_ID")
+    @JoinColumn(name = "CATEGORY_ID", insertable = false, updatable = false)
     private CategoryEntity category;
 
     @Column(name = "PRICE")

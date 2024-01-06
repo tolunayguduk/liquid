@@ -9,7 +9,6 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,12 +25,12 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryEntity find(Long id) throws CustomException {
-        return categoryRepository.findOneById(id).orElseThrow(()->Exception.PARAMETER_NOT_FOUND.raise());
+        return categoryRepository.findOneById(id).orElseThrow(Exception.PARAMETER_NOT_FOUND::raise);
     }
 
     @Override
     public List<CategoryEntity> retrieve(Jwt jwt) throws CustomException {
-        return categoryRepository.findByOwner(jwt.getClaimAsString("preferred_username")).orElseThrow(()->Exception.PARAMETER_NOT_FOUND.raise());
+        return categoryRepository.findByOwner(jwt.getClaimAsString("preferred_username")).orElseThrow(Exception.PARAMETER_NOT_FOUND::raise);
     }
 
     @Override
@@ -45,7 +44,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Transactional
     public CategoryEntity update(Long id, CategoryEntity entity, Jwt jwt) throws CustomException {
         Optional<CategoryEntity> category = categoryRepository.findOneById(id);
-        if(!category.orElseThrow(()-> Exception.PARAMETER_NOT_FOUND.raise()).getOwner().equals(jwt.getClaimAsString("preferred_username"))){
+        if(!category.orElseThrow(Exception.PARAMETER_NOT_FOUND::raise).getOwner().equals(jwt.getClaimAsString("preferred_username"))){
             throw Exception.PARAMETER_NOT_FOUND.raise();
         }
         category.get().setName(entity.getName());
@@ -57,7 +56,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Transactional
     public void delete(Long id, Jwt jwt) throws CustomException {
         Optional<CategoryEntity> category = categoryRepository.findOneById(id);
-        if(!category.orElseThrow(()-> Exception.PARAMETER_NOT_FOUND.raise()).getOwner().equals(jwt.getClaimAsString("preferred_username"))){
+        if(!category.orElseThrow(Exception.PARAMETER_NOT_FOUND::raise).getOwner().equals(jwt.getClaimAsString("preferred_username"))){
             throw Exception.PARAMETER_NOT_FOUND.raise();
         }
         categoryRepository.deleteOneById(id);
