@@ -17,6 +17,8 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long>, R
 
     Optional<List<ProductEntity>> findByOwner(String username);
 
+    Optional<List<ProductEntity>> findByOwnerAndCategoryId(String username, Long categoryId);
+
     Optional<List<ProductEntity>> findByCategoryId(Long categoryId);
 
 }

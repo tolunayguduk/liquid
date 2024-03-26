@@ -1,6 +1,5 @@
 package com.liquid.product.service;
 
-import com.liquid.product.entity.CategoryEntity;
 import com.liquid.product.entity.ProductEntity;
 import com.liquid.product.repository.ProductRepository;
 import com.liquid.util.exception.CustomException;
@@ -45,13 +44,6 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional
     public ProductEntity create(ProductEntity entity, Jwt jwt) throws CustomException {
-        if (entity.getCategory() == null){
-            CategoryEntity category = categoryService.find(entity.getCategoryId());
-            entity.setCategory(category);
-        }else{
-            //TODO:CHILD ID COuLDNT SAVE
-            entity.getCategory().setOwner(jwt.getClaimAsString("preferred_username"));
-        }
         entity.setOwner(jwt.getClaimAsString("preferred_username"));
         return productRepository.save(entity);
     }

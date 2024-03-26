@@ -31,8 +31,7 @@ public class CategoryEntity extends BaseEntity {
 	@Column(name = "OWNER")
 	private String owner;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "category", targetEntity = ProductEntity.class)
-	//@LazyCollection(LazyCollectionOption.TRUE)
-	private List<ProductEntity> products = new ArrayList<>();
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryId")
+	private List<ProductEntity> products;
 
 }

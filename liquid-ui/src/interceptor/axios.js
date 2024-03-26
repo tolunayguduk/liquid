@@ -7,9 +7,9 @@ axios.defaults.headers.common['Access-Control-Allow-Headers'] = 'Content-Type, A
 axios.defaults.headers.common['Content-Type'] = "application/json"
 
 axios.interceptors.request.use(function (config) {
-  if(localStorage.getItem('token')){
+  if (localStorage.getItem('token')) {
     const access_token = JSON.parse(localStorage.getItem('token')).access_token;
-    config.headers.Authorization =  access_token ? `Bearer ${access_token}` : '';
+    config.headers.Authorization = access_token ? `Bearer ${access_token}` : '';
   }
   // Do something before request is sent
   return config;

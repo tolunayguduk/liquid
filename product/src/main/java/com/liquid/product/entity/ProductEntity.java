@@ -29,10 +29,6 @@ public class ProductEntity extends BaseEntity {
     @Column(name = "CATEGORY_ID")
     private Long categoryId;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "CATEGORY_ID", insertable = false, updatable = false)
-    private CategoryEntity category;
-
     @Column(name = "PRICE")
     private String price;
 

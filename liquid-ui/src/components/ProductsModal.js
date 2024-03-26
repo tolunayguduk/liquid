@@ -52,7 +52,8 @@ const ProductsModal = (props) => {
                 columns={
                     productTableColumns(
                         (value, record) => editProduct(value, { ...record, ...{ operation: "edit" } }),
-                        (value, record) => editProduct(value, { ...record, ...{ operation: "delete" } })
+                        (value, record) => editProduct(value, { ...record, ...{ operation: "delete" } }),
+                        props.categoryData
                     )}
                 dataSource={props.productData} />
             <Modal title={"Edit"}
@@ -88,7 +89,7 @@ const ProductsModal = (props) => {
                                     name="categoryId"
                                     rules={[{ required: true }]}>
                                     <Select
-                                        defaultValue={form.getFieldValue("category")}
+                                        defaultValue={form.getFieldValue("categoryId")}
                                         allowClear
                                         options={props.categoryData.map((category) => {return {value: category.id, label:category.name}})}
                                     />
