@@ -1,23 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { productTableColumns } from '../constant/TableColumns';
 import { Table, Modal, Form, Input, Switch, Button, Select } from 'antd';
 import axios from 'axios';
 
 const ProductsModal = (props) => {
     const [formVisible, setFormVisible] = useState(false);
-    const [categories, setCategories] = useState([]);
     const [form] = Form.useForm();
-
-    useEffect(() => {
-        axios.get('/product/category/retrieve').then((res) => {
-            var data = []
-
-            res.data.forEach((element) => data.push({value: element.id, label:element.name}));
-            setCategories(data);
-        }).catch(() => {
-
-        });
-    }, []);
 
     const editProduct = (value, record) => {
         setFormVisible(true);
@@ -28,21 +16,21 @@ const ProductsModal = (props) => {
         if (values.operation === "delete") {
             axios.delete('/product/product/delete/' + values.id).then((res) => {
                 setFormVisible(false);
-                props.refreshCategories();
+                props.refreshProducts();
             }).catch(() => {
 
             });
         } else if (values.operation === "edit") {
             axios.put('/product/product/update/' + values.id, values).then((res) => {
                 setFormVisible(false);
-                props.refreshCategories();
+                props.refreshProducts();
             }).catch(() => {
 
             });
         } else if (values.operation === "add") {
             axios.post('/product/product/create', values).then((res) => {
                 setFormVisible(false);
-                props.refreshProduct();
+                props.refreshProducts();
             }).catch(() => {
 
             });
@@ -102,7 +90,7 @@ const ProductsModal = (props) => {
                                     <Select
                                         defaultValue={form.getFieldValue("category")}
                                         allowClear
-                                        options={categories}
+                                        options={props.categoryData.map((category) => {return {value: category.id, label:category.name}})}
                                     />
                                 </Form.Item>
                                 <Form.Item
@@ -114,7 +102,7 @@ const ProductsModal = (props) => {
                                 <Form.Item
                                     label="İmage Link"
                                     name="imageLink"
-                                    rules={[{ required: true }]}>
+                                    rules={[{ required: false }]}>
                                     <Input />
                                 </Form.Item>
                                 <Form.Item

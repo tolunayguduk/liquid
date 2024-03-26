@@ -55,11 +55,11 @@ const Menu = (props) => {
                             <Offcanvas.Title><i className="bi bi-bullseye"></i> {localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).username : ''}</Offcanvas.Title>
                         </Offcanvas.Header>
                         <Offcanvas.Body>
-                            <div  className='row'>
+                            <a  className='row' href={"/catalog?key=" + (localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).username : 'unknown')}>
                                 <Space onClick={(e) => { printQR(e) }} direction="vertical" align="center">
                                     <QRCode id="qr" value={"tolunayguduk"} />
                                 </Space>
-                            </div>
+                            </a>
                         </Offcanvas.Body>
                     </Offcanvas>
                 ) :

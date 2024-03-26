@@ -9,6 +9,7 @@ import java.util.List;
 public interface ProductService {
     List<ProductEntity> list();
     ProductEntity find(Long id) throws CustomException;
+    List<ProductEntity> findByCategory(Long categoryId) throws CustomException;
     List<ProductEntity> retrieve(Jwt jwt) throws CustomException;
     ProductEntity create(ProductEntity entity, Jwt jwt) throws CustomException;
     ProductEntity update(Long id, ProductEntity entity, Jwt jwt) throws CustomException;

@@ -4,6 +4,7 @@ import Login from './pages/Login';
 import Home from './pages/Home';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Profile from './pages/Profile';
+import Catalog from './pages/Catalog';
 
 const App = () => {
 
@@ -17,6 +18,7 @@ const App = () => {
               <Route path='/' element={<Home />} />
               <Route path='/login' element={<Login />} />
               <Route path='/profile' element={<Profile />} />
+              <Route path='/catalog' element={<Catalog />} />
             </Routes>
           </div>
         </div>

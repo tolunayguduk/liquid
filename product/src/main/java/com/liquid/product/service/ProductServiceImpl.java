@@ -33,6 +33,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<ProductEntity> findByCategory(Long categoryId) throws CustomException {
+        return productRepository.findByCategoryId(categoryId).orElseThrow(Exception.PARAMETER_NOT_FOUND::raise);
+    }
+
+    @Override
     public List<ProductEntity> retrieve(Jwt jwt) throws CustomException {
         return productRepository.findByOwner(jwt.getClaimAsString("preferred_username")).orElseThrow(Exception.PARAMETER_NOT_FOUND::raise);
     }
@@ -62,6 +67,7 @@ public class ProductServiceImpl implements ProductService {
         product.get().setCategoryId(entity.getCategoryId());
         product.get().setPrice(entity.getPrice());
         product.get().setImageLink(entity.getImageLink());
+        product.get().setStatus(entity.getStatus());
         return productRepository.save(product.get());
     }
 

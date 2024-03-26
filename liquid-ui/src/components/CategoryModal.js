@@ -15,8 +15,6 @@ const CategoryModal = (props) => {
         form.setFieldsValue(record);
     }
 
-
-
     const handleOk = (values) => {
         if (values.operation === "delete") {
             axios.delete('/product/category/delete/' + values.id).then((res) => {

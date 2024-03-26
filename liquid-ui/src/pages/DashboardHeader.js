@@ -92,7 +92,7 @@ const DashboardHeader = (props) => {
                     <CategoryModal categoryData={categoryData} refreshCategories={() => getCategories()} />
                 }
                 {modalType === "Products" &&
-                    <ProductsModal productData={productData} refreshProducts={() => getProducts()} />
+                    <ProductsModal productData={productData} categoryData={categoryData} refreshProducts={() => getProducts()} />
                 }
             </Modal>
         </div>

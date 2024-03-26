@@ -1,7 +1,9 @@
 package com.liquid.product.service;
 
 import com.liquid.product.entity.CategoryEntity;
+import com.liquid.product.entity.ProductEntity;
 import com.liquid.product.repository.CategoryRepository;
+import com.liquid.product.repository.ProductRepository;
 import com.liquid.util.exception.CustomException;
 import com.liquid.util.exception.Exception;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,9 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Autowired
     private CategoryRepository categoryRepository;
+
+    @Autowired
+    private ProductRepository productRepository;
 
     @Override
     public List<CategoryEntity> list() {
@@ -59,6 +64,11 @@ public class CategoryServiceImpl implements CategoryService {
         if(!category.orElseThrow(Exception.PARAMETER_NOT_FOUND::raise).getOwner().equals(jwt.getClaimAsString("preferred_username"))){
             throw Exception.PARAMETER_NOT_FOUND.raise();
         }
-        categoryRepository.deleteOneById(id);
+        Optional<List<ProductEntity>> products = productRepository.findByCategoryId(category.get().getId());
+        if(products.isEmpty()){
+            categoryRepository.deleteOneById(id);
+        }else{
+            throw Exception.PARAMETER_NOT_FOUND.raise();
+        }
     }
 }
